@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: aqua;
+  min-height: 300px;
+  transition: background-color 10s;
+}
+header:hover {
+  background-color: chartreuse;
+}
+header:hover nav {
+  position: absolute;
+  background-color: crimson;
+  height: 50px;
+  width: 50px;
+  -webkit-animation-name: change;
+          animation-name: change;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+
+@-webkit-keyframes change {
+  0% {
+    left: 20%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: calc(100% - 50px);
+  }
+}
+
+@keyframes change {
+  0% {
+    left: 20%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: calc(100% - 50px);
+  }
+}/*# sourceMappingURL=style.css.map */

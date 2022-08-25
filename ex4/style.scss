@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+background-color: aqua;
+ min-height: 300px;
+ transition: background-color 10s;
+&:hover{
+    background-color: chartreuse;
+}
+    &:hover nav{
+        position:absolute;
+        background-color: crimson;
+        height: 50px;
+        width: 50px;
+        animation-name: change;
+        animation-duration: 5s;
+
+    }
+}
+@keyframes change{
+    0%{left: 20%;}
+    50%{left: 60%;}
+    100%{left: calc(100% - 50px);}
+}
