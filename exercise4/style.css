@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    text-align: center;
+    background-color: bisque;
+}
+h1{
+    background-color: rgb(3, 75, 75);
+    color: beige;
+}
+h2{
+    background-color: rgb(162, 223, 223);
+}
+img{
+    height: 250px;
+    width: 250px;
+    float: left;
+    border: 1px solid rgb(39, 0, 0);
+}
+.clearFix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
