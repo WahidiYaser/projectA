@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+table{
+    background-color: rgb(209, 95, 95);
+    border: 2px solid green;
+}
+table td,tr, th{
+    padding: 2px;
+    border: 2px solid yellow;
+}
+input{
+    margin: 3px;
+    padding: 3px;
+}
