@@ -8,22 +8,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<form action="" id="add-product-form">
-    <div>
-        <label for="p-name">Name</label>
-        <input id="p-name" type="text">
-    </div>
-    <div>
-        <label for="p-price">Price</label>
-        <input id="p-price" type="number">
-    </div>
-    <button type="submit"> submit </button>
-</form>
-<br>
-
 <body>
 
-    <table>
+
+    <form action="" method="get" id="add-product-form">
+        <div>
+            <label for="p-name">Name</label>
+            <input id="p-name" type="text">
+        </div>
+        <div>
+            <label for="p-price">Price</label>
+            <input id="p-price" type="number">
+        </div>
+        <button type="submit" value="submit" onclick="addProduct()"> submit </button>
+    </form>
+    <br>
+
+
+    <table  id="myTable">
         <thead>
             <tr>
                 <th> name </th>
@@ -49,7 +51,48 @@
             </tr>
         </tbody>
     </table>
-    <script src="script.js"></script>
-</body>
 
+
+
+    <script>
+let rows = document.querySelectorAll("tbody tr")
+let sum = 0
+for(let i = 0; i < rows.length; i+=1){
+    let cells = rows[i].children
+    sum += parseInt(cells[1].innerText)
+}
+document.getElementById("sum").innerText = sum + ""
+
+let form = document.getElementById("add-product-form")
+
+form.addEventListener("submit", addProduct)
+
+
+function addProduct(x){
+    x.preventDefault()
+
+let nameInput = document.getElementById("p-name")
+let priceInput = document.getElementById("p-price")
+/*
+let theRow = document.createElement("tr")
+let td1 = document.createElement("td")
+let td2 = document.createElement("td")
+*/
+let theTable = document.getElementById("myTable").querySelector("tbody")
+let theRow = theTable.insertRow(0)
+let td1 = theRow.insertCell(0)
+let td2 = theRow.insertCell(1)
+
+td1.innerText = nameInput.value
+td2.innerText = priceInput.value
+/*
+theRow.appendChild(td1)
+theRow.appendChild(td2)
+
+let tBodyy = document.getElementsByTagName("tbody")
+tBodyy.appendChild(row)
+*/
+}
+    </script>
+</body>
 </html>

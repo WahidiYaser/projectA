@@ -24,8 +24,8 @@ let td2 = document.createElement("td")
 td1.innerText = nameInput.value
 td2.innerText = priceInput.value
 
-row.appendChild(td1)
-row.appendChild(td2)
+row[0].appendChild(td1)
+row[1].appendChild(td2)
 
 let tBody = document.getElementsByTagName("tbody")
 tBody.appendChild(row)
