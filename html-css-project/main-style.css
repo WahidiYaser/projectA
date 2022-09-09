@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: rgb(26, 51, 53);
+    text-align: center;
+  }
+  body header h2 {
+    color: rgb(154, 153, 156);
+    font-size: 40px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  }
+  
+  header {
+    padding: 0 10px;
+    color: rgb(226, 214, 214);
+    text-shadow: 1px 1px #450147;
+    font-weight: bolder;
+    background-color: rgba(143, 189, 167, 0.685);
+    border-bottom: 2px solid black;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  nav label img {
+    width: 30px;
+  }
+  nav input {
+    display: none;
+  }
+  
+  .collapse {
+    flex-basis: 100%;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  
+  input:checked ~ .collapse {
+    max-height: unset;
+  }
+
+  footer p{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(206, 206, 166, 0.555);
+    padding: 8px;
+  }
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 10px;
+  }
+  .container img{
+    height: 250px;
+    width: 250px;
+    padding: 10px;
+      }
+    .column{
+    width: 100%;
+  } 
+  .container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (min-width: 600px) {
+    header nav ul {
+      display: flex;
+      list-style: none;
+      max-height: 100%;
+    }
+    header nav ul li {
+      padding: 5px 10px;
+      margin: 5px;
+      border: 1px solid rgb(250, 250, 250);
+      border-radius: 250px;
+    }
+    header nav label {
+      display: none;
+    }
+    header nav .collapse {
+      flex-basis: 1;
+      max-height: 100%;
+      height: 50px;
+      position: absolute;
+      left: calc(100% - 270px);
+      border-left: 2px solid black;
+    }
+    .column{
+        width: 50%;
+    }
+  }
+  @media screen and (min-width: 992px) {
+        .column{
+            width: 33.3%;
+        }
+}
