@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -25,7 +26,7 @@
     <br>
 
 
-    <table  id="myTable">
+    <table id="myTable">
         <thead>
             <tr>
                 <th> name </th>
@@ -55,44 +56,45 @@
 
 
     <script>
-let rows = document.querySelectorAll("tbody tr")
-let sum = 0
-for(let i = 0; i < rows.length; i+=1){
-    let cells = rows[i].children
-    sum += parseInt(cells[1].innerText)
-}
-document.getElementById("sum").innerText = sum + ""
+        let rows = document.querySelectorAll("tbody tr")
+        let sum = 0
+        for (let i = 0; i < rows.length; i += 1) {
+            let cells = rows[i].children
+            sum += parseInt(cells[1].innerText)
+        }
+        document.getElementById("sum").innerText = sum + ""
 
-let form = document.getElementById("add-product-form")
+        let form = document.getElementById("add-product-form")
 
-form.addEventListener("submit", addProduct)
+        form.addEventListener("submit", addProduct)
 
 
-function addProduct(x){
-    x.preventDefault()
+        function addProduct(x) {
+            x.preventDefault()
 
-let nameInput = document.getElementById("p-name")
-let priceInput = document.getElementById("p-price")
-/*
-let theRow = document.createElement("tr")
-let td1 = document.createElement("td")
-let td2 = document.createElement("td")
-*/
-let theTable = document.getElementById("myTable").querySelector("tbody")
-let theRow = theTable.insertRow(0)
-let td1 = theRow.insertCell(0)
-let td2 = theRow.insertCell(1)
+            let nameInput = document.getElementById("p-name")
+            let priceInput = document.getElementById("p-price")
+            /*
+            let theTable = document.getElementById("myTable").querySelector("tbody")
+            let theRow = theTable.insertRow(0)
+            let td1 = theRow.insertCell(0)
+            let td2 = theRow.insertCell(1)
+            */
+            let theRow = document.createElement("tr")
+            let td1 = document.createElement("td")
+            let td2 = document.createElement("td")
 
-td1.innerText = nameInput.value
-td2.innerText = priceInput.value
-/*
-theRow.appendChild(td1)
-theRow.appendChild(td2)
+            td1.innerHTML = nameInput.value
+            td2.innerHTML = priceInput.value
 
-let tBodyy = document.getElementsByTagName("tbody")
-tBodyy.appendChild(row)
-*/
-}
+            theRow.appendChild(td1)
+            theRow.appendChild(td2)
+
+            let tBodyy = document.getElementById("myTable").querySelector("tbody")
+            tBodyy.appendChild(theRow)
+
+        }
     </script>
 </body>
+
 </html>
