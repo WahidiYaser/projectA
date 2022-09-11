@@ -1,40 +1,27 @@
 function loadFile(event) {
     /*var loadFile = function (event) {*/
-    var newDiv = document.createElement("div")
-    newDiv.setAttribute("class", "column")
-    var newH3 = document.createElement("h3")
-    var newPara = document.createElement("p")
-    var newImage = document.createElement('img')
-
-    newH3.innerText = document.getElementById("p-header").value
-    newPara.innerText = document.getElementById("p-description").value
-
-    var newImageSrc = 0
-    newImageSrc = URL.createObjectURL(event.target.files[0]);
-    newImageSrc.onload = function () {
-        URL.revokeObjectURL(newImageSrc.src) // free memory
-        newImage.setAttribute("src", newImageSrc)
-    }
-    newDiv.appendChild(newH3)
-    newDiv.appendChild(newImage)
-    newDiv.appendChild(newPara)
-
-
-    /* newDiv.document.style.dispalty = "hidden" */
+    const newImage = document.createElement("img")
+    newImage = URL.createObjectURL(event.target.files[0]);
 };
 
-function addThePhoto(x) {
-    x.preventDefault()
+let form = document.getElementById("add-photo")
+form.addEventListener("submit", addThePhoto)  
 
-    document.body.querySelector(".container").appendChild(newDiv)
+ function addThePhoto() {
+   //x.preventDefault() 
+   const newDiv = document.createElement("div")
+   newDiv.setAttribute("class", "column")
+   const newH3 = document.createElement("h3")
+   const newPara = document.createElement("p")
+
+   newH3.innerText = document.getElementById("p-header").value
+   newPara.innerText = document.getElementById("p-description").value
+
+   newDiv.appendChild(newH3)
+   newDiv.appendChild(newImage(target.files[0]))
+   newDiv.appendChild(newPara)
+   document.body.querySelector(".container").appendChild(newDiv)
 }
-
-
-
-
-
-
-
 
 
 
