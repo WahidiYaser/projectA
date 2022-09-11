@@ -1,22 +1,49 @@
-    function loadFile(event) {
+function loadFile(event) {
     /*var loadFile = function (event) {*/
-    let newDiv = document.createElement("div")
+    var newDiv = document.createElement("div")
     newDiv.setAttribute("class", "column")
-    let newH3 = document.createElement("h3")
-    let newPara = document.createElement("p")
+    var newH3 = document.createElement("h3")
+    var newPara = document.createElement("p")
     var newImage = document.createElement('img')
-    
+
     newH3.innerText = document.getElementById("p-header").value
     newPara.innerText = document.getElementById("p-description").value
-    
-    newImage.src = URL.createObjectURL(event.target.files[0]);
 
+    var newImageSrc = 0
+    newImageSrc = URL.createObjectURL(event.target.files[0]);
+    newImageSrc.onload = function () {
+        URL.revokeObjectURL(newImageSrc.src) // free memory
+        newImage.setAttribute("src", newImageSrc)
+    }
     newDiv.appendChild(newH3)
     newDiv.appendChild(newImage)
     newDiv.appendChild(newPara)
 
-    document.body.querySelector(".container").appendChild(newDiv)
+
+    /* newDiv.document.style.dispalty = "hidden" */
 };
+
+function addThePhoto(x) {
+    x.preventDefault()
+
+    document.body.querySelector(".container").appendChild(newDiv)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

@@ -31,7 +31,7 @@
             </div>
         </nav>
     </header>
-    <form action="" method="get">
+    <form action="" method="get" id="add-photo">
         <div>
             <label for="p-header">Header</label>
             <input id="p-header" type="text">
@@ -44,7 +44,7 @@
             <label for="p-picture">Upload Picture</label>
             <input id="p-picture" type="file" onchange="loadFile(event)" accept="image/*">
         </div>
-        <button type="submit" value="submit"> submit </button>
+        <button type="submit" value="submit" onclick="addThePhoto()"> submit </button>
     </form>
 
     <div class="container">
@@ -97,10 +97,10 @@
     </div>
     <footer>
         <p> Follow Us On Social Media </p>
-        <a href="https://www.facebook.com" target="_blank"><img src="../../iconsPng/icons8-facebook-48.png" alt="facebook icon" class="foImg"></a>
-        <a href="https://www.instagram.com" target="_blank"><img src="../../iconsPng/icons8-instagram-48.png" alt="facebook icon" class="foImg"></a>
-        <a href="https://www.twitter.com" target="_blank"><img src="../../iconsPng/icons8-twitter-48.png" alt="facebook icon" class="foImg"></a>
-        <a href="https://www.youtube.com" target="_blank"><img src="../../iconsPng/icons8-youtube-48.png" alt="facebook icon" class="foImg"></a>
+        <a href="https://www.facebook.com" target="_blank"><img src="./photos/icons8-facebook-48.png" alt="facebook icon" class="foImg"></a>
+        <a href="https://www.instagram.com" target="_blank"><img src="./photos/icons8-instagram-48.png" alt="instagram icon" class="foImg"></a>
+        <a href="https://www.twitter.com" target="_blank"><img src="./photos/icons8-twitter-48.png" alt="twitter icon" class="foImg"></a>
+        <a href="https://www.youtube.com" target="_blank"><img src="./photos/icons8-youtube-48.png" alt="youtube icon" class="foImg"></a>
     </footer>
     <script src="script.js"></script>
 </body>
