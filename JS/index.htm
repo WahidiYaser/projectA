@@ -56,18 +56,20 @@
 
 
     <script>
-        let rows = document.querySelectorAll("tbody tr")
-        let sum = 0
-        for (let i = 0; i < rows.length; i += 1) {
-            let cells = rows[i].children
-            sum += parseInt(cells[1].innerText)
+        function calculateSum() {
+            document.getElementById("sum").innerText = 0
+            let rows = document.querySelectorAll("tbody tr")
+            let sum = 0
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].children
+                sum += parseInt(cells[1].innerText)
+            }
+            document.getElementById("sum").innerText = sum + ""
         }
-        document.getElementById("sum").innerText = sum + ""
 
         let form = document.getElementById("add-product-form")
-
         form.addEventListener("submit", addProduct)
-
+        /* onckick submit do the same thing!!! */
 
         function addProduct(x) {
             x.preventDefault()
@@ -80,6 +82,7 @@
             let td1 = theRow.insertCell(0)
             let td2 = theRow.insertCell(1)
             */
+
             let theRow = document.createElement("tr")
             let td1 = document.createElement("td")
             let td2 = document.createElement("td")
@@ -90,9 +93,12 @@
             theRow.appendChild(td1)
             theRow.appendChild(td2)
 
-            let tBodyy = document.getElementById("myTable").querySelector("tbody")
-            tBodyy.appendChild(theRow)
 
+            let tBodyy = document.getElementById("myTable").querySelector("tbody")
+
+            tBodyy.insertBefore(theRow, tBodyy.children[0])
+            /* tBodyy.appendChild(theRow) */
+            calculateSum()
         }
     </script>
 </body>
