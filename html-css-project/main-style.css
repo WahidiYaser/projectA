@@ -5,12 +5,16 @@
 }
 
 body {
-  background-color: rgb(26, 51, 53);
+ /* background-color: rgb(133, 133, 133); */
+ background-image: url('./photos/high-resolution-black-background-16.jpg');
+ background-repeat: round;
+ background-size: 100%;
   text-align: center;
 }
 
 body header h2 {
-  color: rgb(154, 153, 156);
+  color: rgb(144, 211, 240);
+  text-shadow: 10px 10px 10px rgb(0, 0, 0);
   font-size: 40px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   display: inline-block;
@@ -18,11 +22,11 @@ body header h2 {
 
 header {
   padding: 0 10px;
-  color: rgb(226, 214, 214);
-  text-shadow: 1px 1px #450147;
+  color: rgb(49, 57, 70);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bolder;
-  background-color: rgba(143, 189, 167, 0.685);
-  border-bottom: 2px solid rgb(228, 180, 180);
+  background-color: rgba(192, 226, 210, 0.377);
+  border-bottom: 2px solid rgb(56, 40, 40);
 }
 
 nav {
@@ -84,15 +88,43 @@ footer img {
 .container img {
   height: 250px;
   width: 250px;
-  border: 1px solid rgb(95, 95, 95);
+  border: none;
   border-radius: 40%;
 }
 
+.container img:hover {
+  height: 280px;
+  width: 280px;
+  border: 2px solid rgb(149, 232, 247);
+  transform: rotate(-10deg);
+}
+
 .column {
+  flex-direction: column;
   width: 100%;
   margin-top: 50px;
-  color: rgb(158, 126, 189);
+  color: rgb(255, 255, 255);
+  text-shadow: 5px 5px 10px rgb(217, 255, 1);
   font-weight: 1000;
+}
+#add-photo{
+  display: inline-block;
+  border: 2px dotted rgb(255, 255, 255);
+  color: antiquewhite;
+  text-shadow: 5px 5px 10px rgb(255, 9, 9);
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-image: url('./photos/black-screen-14.jpg');
+  background-repeat: round;
+  opacity: 80%;
+}
+.someBtn{
+  background-color: rgb(0, 0, 0);
+  margin: 3px;
+  padding: 5px;
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 50%;
 }
 
 .container:after {
@@ -113,6 +145,7 @@ footer img {
     margin: 5px;
     border: 1px solid rgb(250, 250, 250);
     border-radius: 250px;
+    background-color: #ffffff;
   }
 
   header nav label {
@@ -125,7 +158,7 @@ footer img {
     height: 55px;
     position: absolute;
     left: calc(100% - 270px);
-    border-left: 2px solid rgb(243, 191, 191);
+    border-left: 2px solid rgb(56, 40, 40);
   }
 
   .column {

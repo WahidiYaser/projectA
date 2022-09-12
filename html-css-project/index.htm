@@ -32,19 +32,20 @@
         </nav>
     </header>
     <form action="" method="get" id="add-photo">
+        <div> <h3> Upload More Images Here </h3></div>
         <div>
             <label for="p-header">Header</label>
-            <input id="p-header" type="text">
+            <input id="p-header" type="text" required>
         </div>
         <div>
             <label for="p-description">Description</label>
-            <input id="p-description" type="text">
+            <input id="p-description" type="text" required>
         </div>
         <div>
             <label for="p-picture">Upload Picture</label>
-            <input id="p-picture" type="file" accept="image/*">
+            <input id="p-picture" type="file" accept="image/*" required>
         </div>
-        <button type="submit" value="submit"> submit </button>
+        <button type="submit" value="submit" class="someBtn"> submit </button>
     </form>
 
     <div class="container">
