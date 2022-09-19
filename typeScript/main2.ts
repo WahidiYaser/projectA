@@ -19,11 +19,11 @@ console.log("even number: " + even)
 
 // question number two 2
 
-let a = 5;
-let b = 6;
+let xa = 5;
+let xb = 6;
 let result = 0;
-for(let i = 0; i < b; i++){
-    result += a; 
+for(let i = 0; i < xb; i++){
+    result += xa; 
 }
 console.log("Kefel Result " + result);
 
