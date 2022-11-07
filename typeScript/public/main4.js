@@ -1,3 +1,4 @@
+"use strict";
 // -------------------------------1-----------------------------------
 // let size = 4;
 // let str = "";
@@ -67,25 +68,36 @@
 //     }
 // }
 // console.log(arrayA);
+/////////////////////////////////////////// in one for loop we can do it also:
+let arrayA = [18, 23, 56, 99, 4, 145, 1200];
+for (let i = 0; i < arrayA.length - 1; i++) {
+    if (arrayA[i] > arrayA[i + 1]) {
+        let temp = arrayA[i];
+        arrayA[i] = arrayA[i + 1];
+        arrayA[i + 1] = temp;
+        i = -1;
+    }
+}
+console.log(arrayA);
 //////////////////////////////////////////////////////////////
 // let number = Math.round(Math.random() * 4) + 2  -  choose random number between 2 (+ 2) & 4 (* 4) 
 // console.log(number)
 //////////////////////////////////////////////////////////////
 // -------------------------------5-----------------------------------
-var str = "HelloWorld";
-var newStr = [""];
-for (var i = 0; i < str.length; i++) {
-    newStr[i] = str[i];
-}
-for (var i = 0; i < str.length; i++) {
-    for (var j = 0; j < str.length - 1; j++) {
-        var charA = newStr[j].charCodeAt(0);
-        var charB = newStr[j + 1].charCodeAt(0);
-        if (charA > charB) {
-            var temp = newStr[j];
-            newStr[j] = newStr[j + 1];
-            newStr[j + 1] = temp;
-        }
-    }
-}
-console.log(newStr.toString());
+// let str = "HelloWorld"
+// let newStr = [""]
+// for (let i = 0; i < str.length; i++) {
+//     newStr[i] = str[i]
+// }
+// for (let i = 0; i < str.length; i++) {
+//     for (let j = 0; j < str.length - 1; j++) {
+//         let charA = newStr[j].charCodeAt(0)
+//         let charB = newStr[j + 1].charCodeAt(0)
+//         if (charA > charB) {
+//             let temp = newStr[j];
+//             newStr[j] = newStr[j + 1];
+//             newStr[j + 1] = temp;
+//         }
+//     }
+// }
+// console.log(newStr.toString())

@@ -1,7 +1,8 @@
+"use strict";
 console.log("hello world");
-var a = 4;
-var b = 2;
-var c = a + b;
+let a = 4;
+let b = 2;
+let c = a + b;
 console.log("c = " + c);
 b *= 3;
 console.log("b * 3 = " + b);
@@ -15,14 +16,14 @@ else {
 if (c > 1 && c < 10) {
     console.log("in range");
 }
-var days = 16;
+let days = 16;
 console.log(" you save " + Math.floor(days / 7) + " weeks and " + days % 7 + " days");
 console.log("\n");
-var num = 7;
-var numNew = num + "";
-for (var i = 0; i < numNew.length; i++) {
+let num = 7;
+let numNew = num + "";
+for (let i = 0; i < numNew.length; i++) {
     console.log(numNew[i]);
 }
-for (var i = 0; i < num; i++) {
+for (let i = 0; i < num; i++) {
     console.log(i);
 }
