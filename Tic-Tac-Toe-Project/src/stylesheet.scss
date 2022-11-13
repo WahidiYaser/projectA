@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    background-color: rgb(21, 29, 19);
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    text-align: center;
+    color: rgb(134, 120, 184);
+    font-size: 80px;
+    margin-bottom: 70px;
+    margin-top: 45px;
+    border: 0.5px solid rgb(99, 98, 98);
+    border-radius: 50%;
+    border-width: 30px;
+}
+#wrapper{
+display: flex;
+justify-content: center;
+}
+
+#ticBox{
+    display:flex;
+    flex-wrap: wrap;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 50px;
+    background-color: rgb(6, 67, 233);
+    height: 600px;
+    width: 600px;
+    //overflow: hidden;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(193, 223, 250);
+    color: rgb(163, 0, 0);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    text-shadow: 2px 4px 6px rgba(255, 9, 255, 0.863);
+    border: 3px solid rgb(0, 0, 0);
+    height: 199px;
+    width: 199px;
+    border-radius: 10px;
+}
+.btn:hover{
+    background-color: rgb(131, 185, 233);
+}
+.reset{
+    width: auto;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    position: absolute;
+    left: 20px;
+    top: 250px;
+    font-size: 30px;
+    font-weight: 250;
+    color: rgb(44, 27, 21);
+    background-color: rgb(199, 68, 94);
+    border-radius: 50px;
+}
+.reset:hover{
+    font-weight: 600;
+    color: rgb(17, 10, 8);
+    background-color: crimson;
+}
+.point-board{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(9, 129, 25);
+    font-size: 20px;
+    font-weight: bold;
+}
