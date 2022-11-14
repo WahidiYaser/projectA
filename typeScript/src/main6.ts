@@ -64,14 +64,14 @@
 
 //----------------------------------------------------------------------
 
-let arr = [ 3, -12, -5, -9, 6, -7, -15, -2, -1, -18, 24 ] , positive = 0;
+// let arr = [ 3, -12, -5, -9, 6, -7, -15, -2, -1, -18, 24 ] , positive = 0;
 
-function countPositiveNumbersInIntArray(arr, index){
-if(index == -1)
-return positive
-if(arr[index] >= 0)
-positive++
-return countPositiveNumbersInIntArray(arr, index-1)
-}
+// function countPositiveNumbersInIntArray(arr, index){
+// if(index == -1)
+// return positive
+// if(arr[index] >= 0)
+// positive++
+// return countPositiveNumbersInIntArray(arr, index-1)
+// }
 
-console.log(countPositiveNumbersInIntArray(arr, arr.length-1))
+// console.log(countPositiveNumbersInIntArray(arr, arr.length-1))

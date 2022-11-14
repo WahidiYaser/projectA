@@ -1,5 +1,7 @@
 "use strict";
 function buildAnimalArr(n) {
+    if (n == 0)
+        throw new Error("the length of array must be at least 1 !");
     let arr = [];
     for (let i = 0; i < n; i++) {
         arr[i] = { id: 1, name: "", age: 1, type: "" };
@@ -10,15 +12,23 @@ function buildAnimalArr(n) {
     }
     return arr;
 }
-function displayThisAnimal(arr, str) {
-    let newArr = [];
-    let j = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i].type === str) {
-            newArr[j++] = arr[i];
+function displayThisAnimal(arr, strr) {
+    if (arr.length == 0)
+        throw new Error("array is empty");
+    if (strr == "")
+        throw new Error("give me animal name to find for u !");
+    if (strr == "cat" || strr == "dog" || strr == "mouse" || strr == "ant" || strr == "fish") {
+        let newArr = [];
+        let j = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].type === strr) {
+                newArr[j++] = arr[i];
+            }
         }
+        return newArr;
     }
-    return newArr;
+    else
+        throw new Error("this type: " + strr + " of animals not on our list sorry ");
 }
 function updateAnimal(arr, anim) {
     let i = arr.length;
@@ -70,9 +80,14 @@ function generateName() {
     }
     return text;
 }
-let myAnimalArr = buildAnimalArr(5);
-console.log(myAnimalArr);
-// console.log(displayThisAnimal(myAnimalArr, "mouse"))
-// console.log(updateAnimal(myAnimalArr, {id:0, name:"joe", age:14, type:"cat"}))
-// console.log(deleteAnimalById(myAnimalArr, 2))
-console.log(deleteAnimalByType(myAnimalArr, "mouse"));
+try {
+    let myAnimalArr = buildAnimalArr(3);
+    console.log(myAnimalArr);
+    // console.log(displayThisAnimal(myAnimalArr, "dog"))
+    // console.log(updateAnimal(myAnimalArr, {id:0, name:"joe", age:14, type:"cat"}))
+    // console.log(deleteAnimalById(myAnimalArr, 2))
+    // console.log(deleteAnimalByType(myAnimalArr!, "mouse"))
+}
+catch (e) {
+    console.log(e.message);
+}

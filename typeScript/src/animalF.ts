@@ -2,6 +2,8 @@
 type Animal = { id: number, name: string, age: number, type: string }
 
 function buildAnimalArr(n: number) {    //* הפעולה הראשונה: יוצרת מערך חיות ומאתחלת אותו **//
+    if (n == 0) throw new Error("the length of array must be at least 1 !")
+
     let arr: Animal[] = []
     for (let i = 0; i < n; i++) {
         arr[i] = { id: 1, name: "", age: 1, type: "" }
@@ -12,37 +14,43 @@ function buildAnimalArr(n: number) {    //* הפעולה הראשונה: יוצ�
     }
     return arr
 }
-function displayThisAnimal(arr: Animal[], str: string) {       //* הפעולה השניה: מחזירה מערך עם סוג חיות אחת **//
+function displayThisAnimal(arr: Animal[], strr: string) {  //* הפעולה השניה: מחזירה מערך עם סוג חיות אחת **//
+    if (arr.length == 0) throw new Error("array is empty")
+    if (strr == "") throw new Error("give me animal name to find for u !")
+    if (strr == "cat" || strr == "dog" || strr == "mouse" || strr == "ant" || strr == "fish") {
+
+        let newArr: Animal[] = []
+        let j = 0
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].type === strr) {
+                newArr[j++] = arr[i]
+            }
+        }
+        return newArr
+    }
+    else throw new Error("this type: " + strr + " of animals not on our list sorry ")
+}
+function updateAnimal(arr: Animal[], anim: Animal) {    //* פעולה שלישית: מעדכנת חיה ברשימה **//
+    let i = arr.length
+    arr[i] = anim
+    arr[i].id = i
+    return arr
+}
+function deleteAnimalById(arr: Animal[], id: number) {    //* ID הפעולה הרביעית: מוחק חיה לפי הזהות שלו **//
     let newArr: Animal[] = []
     let j = 0
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].type === str) {
+        if (arr[i].id !== id)
             newArr[j++] = arr[i]
-        }
     }
     return newArr
 }
-function updateAnimal(arr:Animal[], anim:Animal){    //* פעולה שלישית: מעדכנת חיה ברשימה **//
-let i = arr.length
-arr[i] = anim
-arr[i].id = i
-return arr
-}
-function deleteAnimalById(arr:Animal[], id:number){    //* ID הפעולה הרביעית: מוחק חיה לפי הזהות שלו **//
-    let newArr:Animal[] = []
+function deleteAnimalByType(arr: Animal[], str: string) {    //* הפעולה החמישית: מוחק חיה לפי הסוג שלה **//
+    let newArr: Animal[] = []
     let j = 0
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i].id !== id)
-        newArr[j++] = arr[i]
-    }
-    return newArr
-}
-function deleteAnimalByType(arr:Animal[], str:string){    //* הפעולה החמישית: מוחק חיה לפי הסוג שלה **//
-    let newArr:Animal[] = []
-    let j = 0
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i].type !== str)
-        newArr[j++] = arr[i]
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].type !== str)
+            newArr[j++] = arr[i]
     }
     return newArr
 }
@@ -73,13 +81,20 @@ function generateName() {     //* בוחר שם רנדומלי לחיה **//
     return text
 }
 
-let myAnimalArr = buildAnimalArr(5)
-console.log(myAnimalArr)
 
-// console.log(displayThisAnimal(myAnimalArr, "mouse"))
+try {
+    let myAnimalArr: Animal[] = buildAnimalArr(3)
+    console.log(myAnimalArr)
 
-// console.log(updateAnimal(myAnimalArr, {id:0, name:"joe", age:14, type:"cat"}))
+    // console.log(displayThisAnimal(myAnimalArr, "dog"))
 
-// console.log(deleteAnimalById(myAnimalArr, 2))
+    // console.log(updateAnimal(myAnimalArr, {id:0, name:"joe", age:14, type:"cat"}))
 
-console.log(deleteAnimalByType(myAnimalArr, "mouse"))
+    // console.log(deleteAnimalById(myAnimalArr, 2))
+
+    // console.log(deleteAnimalByType(myAnimalArr!, "mouse"))
+}
+catch (e: any) {
+    console.log(e.message)
+}
+
