@@ -9,15 +9,19 @@ let eq = document.querySelector(".equalBtn")
 eq.removeEventListener("click", btnClick)
 eq.addEventListener("click", solveIt)
 
+// let form = document.querySelector(".calculator-wrraper")
+// form.addEventListener("submit", solveIt)
+
 function solveIt() {
+    //  e.preventDefault()
     let mem = document.querySelector(".mem")
-    mem.textContent = eval(mem.textContent)
+    mem.value = eval(mem.value)
 }
 function clear() {
     let mem = document.querySelector(".mem")
-    mem.textContent = ""
+    mem.value = ""
 }
 function btnClick() {
     let mem = document.querySelector(".mem")
-    mem.textContent += this.textContent
+    mem.value += this.textContent
 }
