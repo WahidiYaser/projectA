@@ -4,8 +4,8 @@ form.addEventListener("submit", addTheContent)
 
 function addTheContent(e){
 e.preventDefault()
-let span = document.getElementById("inputHere")
+let paragraph = document.getElementById("inputHere")
 let inp = document.getElementById("input")
-span.textContent += inp.value
-span.innerHTML += ("\n")
+paragraph.textContent +=  inp.value + "\n"
+inp.value = ""
 }
