@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheet.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <button type="button" id="addTodo" for="addToText"> Add This Task </button>
+        <input type="text" id="addToText" placeholder="what else you wanna do?">
+        <div class="to-do-div">
+            <h1> To Do </h1>
+            <ul class="to-do">
+                    <p class="msgToDo" style="display: none;">good job HERO no tasks left!!</p>
+                <li><input type="checkbox" name="1">
+                    <label for="1" id="1"> make homework </label>
+                </li>
+                <li><input type="checkbox" name="2">
+                    <label for="2" id="2"> eat good </label>
+                </li>
+                <li><input type="checkbox" name="3">
+                    <label for="3" id="3"> practice </label>
+                </li>
+            </ul>
+        </div>
+        <button type="button" id="finishTodo"> Mark As Done </button>
+
+        <div class="done-div">
+            <h1> Done </h1>
+            <ul class="done">
+                    <p class="msgDone" style="display: none;">nothing done yet lazy</p>
+            </ul>
+        </div>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

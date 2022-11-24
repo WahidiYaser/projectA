@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2020/05/31/19/38/job-5243951_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  font-family: fantasy;
+  font-size: xx-large;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container div {
+  background-color: rgb(160, 173, 184);
+  padding: 30px;
+  margin: 20px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50px;
+}
+
+h1 {
+  text-align: center;
+  text-shadow: -1px 0 rgb(255, 0, 0), 0 1px rgb(77, 7, 243), 1px 0 rgb(81, 255, 1), 0 -1px rgb(229, 255, 0);
+}
+
+ul {
+  list-style-position: inside;
+  list-style-type: none;
+}
+
+li:hover {
+  background-color: rgb(200, 234, 248);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+button {
+  padding: 8px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background-color: rgba(62, 0, 218, 0.699);
+  color: wheat;
+  margin-bottom: 4px;
+}
+
+button:hover {
+  background-color: rgb(80, 154, 238);
+  border-color: rgb(22, 15, 22);
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+#addToText {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.done, .to-do {
+  font-family: monospace;
+}
+
+.msgToDo, .msgDone {
+  text-align: center;
+  font-size: 20px;
+  background-color: rgba(204, 250, 0, 0.685);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
