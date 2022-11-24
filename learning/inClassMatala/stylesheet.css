@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+}
+body{
+    background-color: rgba(108, 58, 58, 0.473);
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    border: 3px solid tomato;
+    justify-content: space-evenly;
+    background-color: brown;
+}
+.btns button{
+    border: 1px solid rgb(8, 8, 44);
+    background-color: rgb(223, 152, 64);
+    margin: 15px 3px 5px 15px;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 10px;
+}
+.btns button:hover{
+    background-color: bisque;
+}
+.loadImg{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-family: cursive;
+}
+.loadImg input{
+    border: 2px solid salmon;
+}
+.loadImg button{
+    padding: 6px;
+    margin-left: 3px;
+    border-radius: 6px;
+    border: 2px solid rgb(29, 28, 28);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.pics{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+.pics div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 80%;
+}
+img{
+    margin: 3px;
+    height: 33%;
+    width: 20%;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 4px;
+}
