@@ -10,7 +10,8 @@
 // })
 
 let colors = ["red", "green", "yellow", "blue"]
-let text = colors.map(a => "<div class='"+a+"' style='background-color: "+a+";'> <button>"+a+"</button></div>")
+let text = colors.map(a => "<div class='"
++a+"' style='background-color: "+a+";'> <button onmouseover='event.stopImmediatePropagation()'>"+a+"</button></div>")
 text.forEach(b => document.body.innerHTML += b)
 let btns = document.body.querySelectorAll("button")
 
@@ -19,6 +20,7 @@ btns.forEach((a) => {
     //parent.remove()
     //console.log(parent)
     a.addEventListener("mouseover", ()=>{
+        
         alert("Watch Out Man!")
     })
 })

@@ -1,9 +1,12 @@
 import {products} from './index.js'
-// const {products} = require('./index.js');
 
 function load() {
     let query = window.location.search
     let urlParams = new URLSearchParams(query)
+
+    // import('./index.js')
+    // .then((a)=>{a.products})
+    // .catch(e =>{console.log(e.message)})
 
     if (!urlParams.has("id")) {
         document.querySelector(".eror").style.display = "block"

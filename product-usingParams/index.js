@@ -37,5 +37,3 @@ function createTd(p){
 
 showData()
 export {products}
-// module.exports = {products}
-// export default products
