@@ -10,11 +10,10 @@ let products = [
     { id: 9, name: "lg smart led", category: "tv", price: 21500 },
     { id: 10, name: "panasonic A9", category: "tv", price: 14200 },
 ]
-
 let categoryDiv = document.querySelector(".category")
 let productDiv = document.querySelector(".products")
 
-function categoryList(arr: any[]) {
+function categoryList(arr: any[]) {   //return the "categories" names from the products array without duplication
     let newArr = [""], j = 0
     for (let i = 0; i < arr.length; i++) {
         newArr[j++] = arr[i].category
@@ -22,7 +21,7 @@ function categoryList(arr: any[]) {
     newArr = [...new Set(newArr)]
     return newArr
 }
-function createCategorys() {
+function createCategorys() {  //insert the categories in the htmlDOM inside the <ul></ul>
     let arr = categoryList(products)
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement("li")
@@ -34,12 +33,11 @@ function createCategorys() {
 createCategorys()
 
 let categoryBtns = document.querySelectorAll(".category li")
-categoryBtns.forEach((a) => {
+categoryBtns.forEach((a) => {  //call the function for every button that displays the products by their own category
     a.addEventListener("click", displayDetails)
 })
 
-function displayDetails() {
-    console.log((event?.target as HTMLElement).innerHTML)
+function displayDetails() {  //displays product list with the same/appropriate category 
     let myTarget = (event?.target as HTMLElement).innerHTML
     let productsDiv = document.querySelectorAll(".products div")
     productsDiv.forEach((a) => {
