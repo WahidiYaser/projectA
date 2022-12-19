@@ -1,0 +1,44 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-size: x-large;
+}
+
+body {
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 20px;
+    margin: 50px 10px;
+    padding: 30px;
+}
+
+div {
+    background-color: rgb(67, 83, 103);
+    border: 1px solid white;
+    padding: 50px;
+}
+
+.result {
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgba(159, 241, 141, 0.438);
+    display: block;
+    height: 40px;
+    text-align: center;
+    padding: 5px;
+}

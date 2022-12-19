@@ -1,0 +1,103 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url("./pics/wallpaper1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  width: 600px;
+  height: 600px;
+  background-color: rgba(0, 0, 0, 0.623);
+  border-radius: 3px;
+  backdrop-filter: blur(5px);
+  color: aliceblue;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid saddlebrown;
+  height: 100px;
+  width: 590px;
+}
+
+.header h1 {
+  padding-bottom: 15px;
+}
+
+.containerGame {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  height: 399px;
+  width: 590px;
+}
+
+.player, .computer {
+  border: 1px solid black;
+  width: 33.2%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+}
+.player h2, .computer h2 {
+  z-index: 1;
+  position: absolute;
+}
+
+.player img, .computer img {
+  width: 200px;
+  height: 200px;
+  z-index: 0;
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.2%;
+}
+
+.cards img {
+  height: 200px;
+  width: 589px;
+  border: 5px double rgb(19, 6, 82);
+}
+
+.cards {
+  display: flex;
+  align-items: flex-end;
+}
+
+.scorePlayer, .scoreComputer {
+  display: inline-block;
+  background-color: rgba(178, 255, 71, 0.495);
+  border: 1px solid yellow;
+  margin: 2px;
+  padding-top: 2px;
+  padding-left: 20px;
+}
+
+.win, .lose, .draw {
+  color: red;
+}
