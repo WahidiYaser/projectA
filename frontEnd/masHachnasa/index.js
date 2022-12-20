@@ -9,6 +9,8 @@ form === null || form === void 0 ? void 0 : form.addEventListener("submit", (e) 
     let taxTemp = 0;
     if (monthly >= 6450)
         taxTemp = 6450 * 0.10;
+    else
+        taxTemp += monthly * 0.10;
     if (monthly >= 6451) {
         if (monthly >= 9240)
             taxTemp += (2789 * 0.14);

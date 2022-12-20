@@ -10,6 +10,8 @@ form?.addEventListener("submit", (e) => {
 
     if (monthly >= 6450)
         taxTemp = 6450 * 0.10;
+        else
+        taxTemp += monthly * 0.10;
 
     if (monthly >= 6451) {
         if (monthly >= 9240)
