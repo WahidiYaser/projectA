@@ -1,15 +1,18 @@
 import express from "express"
 import { router } from "./users"
+import { birdRouter } from "./birds"
 import bodyParser from "body-parser"
 
 const PORT = 8000
 const app = express()
 const jsonParser = bodyParser.json()
-// app.use(express.json())
+app.use(express.json())
 app.set("view engine", "ejs")
+
 var data = {
     "email": "yaser@gmail.com"
 }
+
 var products = [
     { id: 1, name: "iphone-4", category: "phones", price: 6100 },
     { id: 2, name: "red-xt", category: "phones", price: 4150 },
@@ -22,16 +25,32 @@ var products = [
     { id: 9, name: "lg smart led", category: "tv", price: 21500 },
     { id: 10, name: "panasonic A9", category: "tv", price: 14200 },
 ]
+
 let arr: any[] = []
 let globalId = 1
+
+// app.route("/:id").get((req, res)=>{
+//     res.render("users", {output: products[5].category})
+// }).post((req, res)=>{
+//     console.log(req.body)
+//     res.send(`tis is my ID: ${req.params.id} and this is your INPUT: ${req.body}`)
+// })
+
+app.post("/yes/:id", (req, res)=>{
+    console.log(req.body)
+    res.send(req.body)
+})
+
 app.get("/try", (req, res) => {
     console.log("Working, Don't worry")
     res.render("index", { text: "the sum is" })
 })
+
 app.get("/home", (req, res) => {
     // res.send("hello from home :)")
     res.send(data)
 })
+
 app.get("/products", (req, res) => {
     res.send(products)
 })
@@ -46,15 +65,18 @@ app.get("/products/:id", (req, res) => {
         res.status(404).send("this product is not found")
         return
     }
+    res.send(p)
 })
+
 app.post("/products",jsonParser, (req, res) =>{
     req.body.id = globalId++
     arr.push(req.body)
     res.send(arr)
 })
 
-const usersRouter = router
-app.use('/users', usersRouter)
+
+app.use('/users', router)
+app.use('/birds', birdRouter)
 
 app.listen(PORT, () => {
     console.log("app is active at port " + PORT)

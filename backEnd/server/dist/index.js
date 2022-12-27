@@ -5,11 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const users_1 = require("./users");
+const birds_1 = require("./birds");
 const body_parser_1 = __importDefault(require("body-parser"));
 const PORT = 8000;
 const app = (0, express_1.default)();
 const jsonParser = body_parser_1.default.json();
-// app.use(express.json())
+app.use(express_1.default.json());
 app.set("view engine", "ejs");
 var data = {
     "email": "yaser@gmail.com"
@@ -28,6 +29,16 @@ var products = [
 ];
 let arr = [];
 let globalId = 1;
+// app.route("/:id").get((req, res)=>{
+//     res.render("users", {output: products[5].category})
+// }).post((req, res)=>{
+//     console.log(req.body)
+//     res.send(`tis is my ID: ${req.params.id} and this is your INPUT: ${req.body}`)
+// })
+app.post("/yes/:id", (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
 app.get("/try", (req, res) => {
     console.log("Working, Don't worry");
     res.render("index", { text: "the sum is" });
@@ -50,14 +61,15 @@ app.get("/products/:id", (req, res) => {
         res.status(404).send("this product is not found");
         return;
     }
+    res.send(p);
 });
 app.post("/products", jsonParser, (req, res) => {
     req.body.id = globalId++;
     arr.push(req.body);
     res.send(arr);
 });
-const usersRouter = users_1.router;
-app.use('/users', usersRouter);
+app.use('/users', users_1.router);
+app.use('/birds', birds_1.birdRouter);
 app.listen(PORT, () => {
     console.log("app is active at port " + PORT);
 });
