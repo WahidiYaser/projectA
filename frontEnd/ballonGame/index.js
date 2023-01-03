@@ -1,9 +1,11 @@
 "use strict";
 let lives = 3;
+let score = 0;
 let keepBaloonsFly = 0;
 document.body.querySelector("#popSound").play();
 function startGame() {
     lives = 3;
+    document.querySelector(".gameOver .score").innerText == "0";
     document.querySelector(".lives").innerHTML = lives.toString();
     keepBaloonsFly = window.setInterval(function createBaloons() {
         var _a;
@@ -27,6 +29,8 @@ function removeBaloon(e) {
     let baloon = (e.target);
     let popSound = document.querySelector("#popSound");
     popSound.play();
+    score++;
+    document.querySelector(".gameOver .score").innerText = score.toString();
     document.querySelector("#backgroundImg").removeChild(baloon);
 }
 function checkIfBaloonPassed(e) {

@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.gameContainer {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(156, 121, 78);
+}
+
+h1 {
+  display: block;
+  width: 800px;
+  text-align: center;
+  color: brown;
+  font-size: 55px;
+  background-color: rgb(8, 43, 43);
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.view {
+  height: 590px;
+  width: 800px;
+  background-color: rgb(0, 0, 0);
+  border: 10px solid rgb(45, 43, 54);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardDiv {
+  width: 15px;
+  height: 15px;
+  background-color: black;
+}
+
+.snake {
+  background-color: rgb(0, 87, 10);
+}
+
+.apple {
+  background-color: red;
+  border-radius: 50%;
+}
+
+#gameOver {
+  border: 2px solid purple;
+  border-radius: 10%;
+  text-align: center;
+  height: 400px;
+  width: 400px;
+  position: absolute;
+  color: azure;
+  background-color: rgba(0, 41, 80, 0.585);
+}
+#gameOver button {
+  height: 30px;
+  width: 130px;
+  font-size: 20px;
+}
+#gameOver button:hover {
+  background-color: aquamarine;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameOver {
+  color: red;
+  font-size: 80px;
+  font-family: cursive;
+  padding: 20px;
+}
