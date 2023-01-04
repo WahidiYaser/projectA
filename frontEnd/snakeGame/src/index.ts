@@ -15,7 +15,7 @@ document.addEventListener("keydown", changeDirection)
 function changeDirection(e: KeyboardEvent) {
     //37 col, 51 rows
     let keyPressed = e;
-    if ((exKeyPressed == "ArrowRight" && keyPressed.key == "ArrowLeft") || (exKeyPressed == "ArrowLeft" && keyPressed.key == "ArrowRight")
+    if ((exKeyPressed == "ArrowRight" && keyPressed.key == "ArrowLeft") || (keyPressed.key == "ArrowRight" && exKeyPressed == "ArrowLeft")
         || (exKeyPressed == "ArrowUp") && (keyPressed.key == "ArrowDown") || (exKeyPressed == "ArrowDown") && (keyPressed.key == "ArrowUp"))
         return;
 
@@ -30,14 +30,19 @@ function returnNumber(str: string): number {
     return parseInt(num);
 }
 function makeBoard() {
+    let boardWallLeft: number = 1;
+    let boardWallRight: number = 52;
     for (let i = 1; i < 1977; i++) {
         let div = document.createElement("div")
         // lastlineStart 1925, firslineEnd 52
+        if((52 - i) >= 0){div.classList.add("boardDiv", "wall", `${i}`);} // first line
+        if((1976 - i) < 52){div.classList.add("boardDiv", "wall", `${i}`);} // last line
+        if (i == boardWallRight) { div.classList.add("boardDiv", "wall", `${i}`); boardWallRight += 52; } // right divs wall
+        if (i == boardWallLeft) { div.classList.add("boardDiv", "wall", `${i}`); boardWallLeft += 52; } // left divs wall
         div.classList.add("boardDiv", `${i}`);
 
         document.querySelector(".view")!.appendChild(div);
     }
-    //37 col, 51 rows
 }
 function makeSnake() {
     for (let i = 1; i <= 8; i++) {
@@ -101,7 +106,7 @@ function appleEat(headPosition: any) {
     return false;
 }
 function gameOver(headPositionFunc: any) {
-    if (boradDivs[headPositionFunc] == undefined || (boradDivs[headPositionFunc].classList.contains("snake") || undefined)) {
+    if (boradDivs[headPositionFunc].classList.contains("wall") || (boradDivs[headPositionFunc].classList.contains("snake"))) {
         clearInterval(playGame);
         score.innerHTML = `${snake.length - 8}`;
         game_Over.style.display = "block";
