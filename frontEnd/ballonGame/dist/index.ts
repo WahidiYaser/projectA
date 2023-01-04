@@ -1,7 +1,8 @@
 let lives = 3;
 let score = 0;
 let keepBaloonsFly = 0;
-(document.body.querySelector("#popSound") as HTMLAudioElement).play();
+let reset = (document.body.querySelector("#reset")as HTMLButtonElement);
+reset.addEventListener("click", playAgain);
 
 function startGame() {
     lives = 3;
@@ -10,7 +11,7 @@ function startGame() {
     keepBaloonsFly = window.setInterval(function createBaloons() {
         let xCross = (Math.round(Math.random() * (1437)) + 0).toString();
         const img = document.createElement("img");
-        img.setAttribute("src", "./images/baloon1.png");
+        img.setAttribute("src", "../images/baloon1.png");
         img.setAttribute("class", "baloons");
         img.setAttribute("draggable", "false");
         img.style.left = `${xCross}px`;
@@ -43,13 +44,13 @@ function checkIfBaloonPassed(e: Event) {
     document.querySelector(".lives")!.innerHTML = lives.toString();
     if (lives <= 0) {
         window.clearInterval(keepBaloonsFly);
-        if (confirm("Ooh you lose buddy :( \nyou want to play again ?!") == true)
-            playAgain();
+        (document.querySelector(".gameOver")as HTMLDivElement).style.display = "flex";
     }
 }
 
 function playAgain() {
-    document.querySelector(".lives")!.innerHTML = "0";
+    (document.querySelector(".gameOver")as HTMLDivElement).style.display = "none";
+    document.querySelector(".lives")!.innerHTML = "3";
     setTimeout(startGame, 150);
 }
 
