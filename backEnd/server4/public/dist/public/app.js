@@ -47,9 +47,45 @@ function handleUpdateUserById(event) {
         try {
             event.preventDefault();
             const id = event.target.elements.userUpId.value;
-            const newName = event.target.elements.newName.value;
+            const firstName = event.target.elements.firstName.value;
+            const lastName = event.target.elements.lastName.value;
+            const address = event.target.elements.address.value;
+            const age = event.target.elements.age.valueAsNumber;
             // @ts-ignore 
-            const { data } = yield axios.patch(`/api/v1/users/${id}`, { newName });
+            const { data } = yield axios.patch(`/api/v1/users/${id}`, { firstName, lastName, address, age });
+            console.log(data);
+            renderUsers(data);
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleAddNewUser(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            const firstName = event.target.elements.firstName.value;
+            const lastName = event.target.elements.lastName.value;
+            const address = event.target.elements.address.value;
+            const age = event.target.elements.age.valueAsNumber;
+            // @ts-ignore 
+            const { data } = yield axios.post("/api/v1/users", { firstName, lastName, address, age });
+            console.log(data);
+            renderUsers(data);
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleDeleteUserById(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            const id = event.target.elements.userId.value;
+            // @ts-ignore 
+            const { data } = yield axios.delete(`/api/v1/users/${id}`);
             console.log(data);
             renderUsers(data);
         }
@@ -61,11 +97,11 @@ function handleUpdateUserById(event) {
 function renderUsers(arr) {
     let html = '';
     arr.users.forEach((element) => {
-        html += `<p>name: ${element.name}, ${element.age} years old, the id is ${element.id}</p><br/>`;
+        html += `<p>name: ${element.firstName} ${element.lastName}, ${element.age} years old, lives in ${element.address} id:${element.id}</p><br/>`;
     });
     document.getElementById("root").innerHTML = html;
 }
 function renderUser(str) {
-    let html = `<p>name: ${str.user.name}, ${str.user.age} years old, the id is ${str.user.id}</p><br/>`;
+    let html = `<p>name: ${str.user.firstName} ${str.user.lastName}, ${str.user.age} years old, lives in ${str.user.address} id:${str.user.id}</p><br/>`;
     document.getElementById("root").innerHTML = html;
 }

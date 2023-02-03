@@ -32,9 +32,31 @@
     <h4>Update user</h4>
     <form onsubmit="handleUpdateUserById(event)">
       <input type="text" id="userUpId" placeholder="Enter ID"/>
-      <input type="text" id="newName" placeholder="Enter New Name"/>
+      <input type="text" id="firstName" placeholder="Enter first name"/>
+      <input type="text" id="lastName" placeholder="Enter last name"/>
+      <input type="text" id="address" placeholder="Enter address"/>
+      <input type="number" id="age" placeholder="Enter age"/>
       <button type="submit">
         insert ID and new Name to Update
+      </button>
+    </form>
+
+    <h4>Add New User</h4>
+    <form onsubmit="handleAddNewUser(event)">
+      <input type="text" id="firstName" placeholder="Enter first name"/>
+      <input type="text" id="lastName" placeholder="Enter last name"/>
+      <input type="text" id="address" placeholder="Enter address"/>
+      <input type="number" id="age" placeholder="Enter age"/>
+      <button type="submit">
+        Click here to add new user
+      </button>
+    </form>
+
+    <h4>Delete User by ID</h4>
+    <form onsubmit="handleDeleteUserById(event)">
+      <input type="text" id="userId" />
+      <button type="submit">
+        insert user ID to Delete him 
       </button>
     </form>
 
