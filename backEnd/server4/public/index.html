@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
+      integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Server Test</title>
+  </head>
+
+  <body>
+    <h1>Hello To My Server</h1>
+    <h4>get all users</h4>
+    <button onclick="handleGetUsers()">Click Here to get users array</button>
+    <div id="root"></div>
+    <br />
+
+    <h4>get user by ID</h4>
+    <form onsubmit="handleGetUserById(event)">
+      <input type="text" id="userId" />
+      <button type="submit">
+        insert ID and click me
+      </button>
+    </form>
+
+    <h4>Update user</h4>
+    <form onsubmit="handleUpdateUserById(event)">
+      <input type="text" id="userUpId" placeholder="Enter ID"/>
+      <input type="text" id="newName" placeholder="Enter New Name"/>
+      <button type="submit">
+        insert ID and new Name to Update
+      </button>
+    </form>
+
+  </body>
+
+  <script src="./dist/public/app.js"></script>
+</html>
