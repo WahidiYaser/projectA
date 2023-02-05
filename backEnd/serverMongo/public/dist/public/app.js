@@ -78,3 +78,21 @@ function handleUpdatePasswordById(event) {
         }
     });
 }
+function handleDeleteUserById(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            const id = event.target.elements.delUserId.value;
+            //@ts-ignore
+            const { data } = yield axios.patch(`/api/v1/users/delete/${id}`);
+            const { success } = data;
+            if (success)
+                console.log(data);
+            else
+                throw new Error("couldn't delete/find this user");
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}

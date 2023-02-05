@@ -54,3 +54,17 @@ async function handleUpdatePasswordById(event: any) {
         console.error(error);
     }
 }
+
+async function handleDeleteUserById(event: any) {
+    try {
+        event.preventDefault();
+        const id = event.target.elements.delUserId.value;
+        //@ts-ignore
+        const {data} = await axios.patch(`/api/v1/users/delete/${id}`);
+        const {success} = data;
+        if(success) console.log(data);
+        else throw new Error("couldn't delete/find this user");
+    } catch (error) {
+        console.error(error);
+    }
+}

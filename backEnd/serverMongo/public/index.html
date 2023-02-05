@@ -35,7 +35,13 @@
     <form onsubmit="handleUpdatePasswordById(event)">
       <input type="text" id="UpdId" placeholder="user ID" />
       <input type="password" id="UpdNewPassId" placeholder="new password" />
-      <button type="submit">click here to Login</button>
+      <button type="submit">click here to change your password </button>
+    </form>
+
+    <h4>Delete user by id </h4>
+    <form onsubmit="handleDeleteUserById(event)">
+      <input type="text" id="delUserId" placeholder="user ID" />
+      <button type="submit">click here to Delete this user </button>
     </form>
 
     <div id="root"></div>

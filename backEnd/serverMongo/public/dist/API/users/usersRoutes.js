@@ -10,5 +10,6 @@ router
     .get("", usersCtrl_1.getAllUsers)
     .post("/login", usersCtrl_1.login)
     .post("/register", usersCtrl_1.register)
-    .patch("/:id", usersCtrl_1.updatePassowrdById);
+    .patch("/:id", usersCtrl_1.updatePassowrdById)
+    .patch("/delete/:id", usersCtrl_1.deleteUserById);
 exports.default = router;

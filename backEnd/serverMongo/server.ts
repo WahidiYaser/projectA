@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 const app = express();
 // const PORT = 5000;
@@ -20,6 +21,7 @@ mongoose.connect(mongodb_uri!).then(res =>{
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use(cookieParser());
 
 import usersRoutes from "./API/users/usersRoutes"
 app.use("/api/v1/users", usersRoutes);

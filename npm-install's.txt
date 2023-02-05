@@ -1,0 +1,15 @@
+npm install:
+
+node @types/node
+ts-node @types/ts-node
+tsc --init -y
+init -y
+-D nodemon
+-save axios @types/axios
+-D express @types/express
+mongoose
+dotenv
+bcrypt @types/bcrypt
+joi @types/joi
+joi-password
+cookie-parser @types/cookie-parser

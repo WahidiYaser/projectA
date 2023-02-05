@@ -2,6 +2,7 @@ import express from "express";
 import UserModel from "./usersModel";
 import bcrypt from "bcrypt";
 // const saltRounds = 10;
+
 export async function getAllUsers(req: express.Request, res: express.Response) {
     try {
         const usersDB = await UserModel.find();
@@ -40,6 +41,9 @@ export async function login(req: express.Request, res: express.Response) {
         const isMatch = await bcrypt.compare(password, userDB.password!);
         if(!isMatch) throw new Error("passord is INCORRECT");
         
+        const cookie = {userId: userDB._id};
+        res.cookie("userID", cookie);
+        
         res.send({ ok: true, msg: `welcome back ${email}` });
     } catch (error: any) {
         res.status(500).send({ ok: false, error: error.message });
@@ -52,5 +56,15 @@ export async function updatePassowrdById(req: express.Request, res: express.Resp
         res.send({ ok: true, userDB });
     } catch (error: any) {
         res.status(500).send({ ok: false, error: error.message })
+    }
+}
+
+export async function deleteUserById(req: express.Request, res: express.Response) {
+    try {
+        const userDB = await UserModel.findByIdAndDelete(req.params.id);
+        if(!userDB) throw new Error("didn't able to find/delete");
+        res.send({success: true, userDB});
+    } catch (error: any) {
+        res.status(500).send({success: false, error: error.message});
     }
 }

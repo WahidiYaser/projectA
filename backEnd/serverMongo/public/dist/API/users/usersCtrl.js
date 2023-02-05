@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePassowrdById = exports.login = exports.register = exports.getAllUsers = void 0;
+exports.deleteUserById = exports.updatePassowrdById = exports.login = exports.register = exports.getAllUsers = void 0;
 const usersModel_1 = __importDefault(require("./usersModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 // const saltRounds = 10;
@@ -60,6 +60,8 @@ function login(req, res) {
             const isMatch = yield bcrypt_1.default.compare(password, userDB.password);
             if (!isMatch)
                 throw new Error("passord is INCORRECT");
+            const cookie = { userId: userDB._id };
+            res.cookie("userID", cookie);
             res.send({ ok: true, msg: `welcome back ${email}` });
         }
         catch (error) {
@@ -80,3 +82,17 @@ function updatePassowrdById(req, res) {
     });
 }
 exports.updatePassowrdById = updatePassowrdById;
+function deleteUserById(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const userDB = yield usersModel_1.default.findByIdAndDelete(req.params.id);
+            if (!userDB)
+                throw new Error("didn't able to find/delete");
+            res.send({ success: true, userDB });
+        }
+        catch (error) {
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+}
+exports.deleteUserById = deleteUserById;
