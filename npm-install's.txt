@@ -13,3 +13,5 @@ bcrypt @types/bcrypt
 joi @types/joi
 joi-password
 cookie-parser @types/cookie-parser
+jwt-simple @types/jwt-simple
+

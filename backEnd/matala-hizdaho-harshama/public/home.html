@@ -11,17 +11,23 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <link rel="stylesheet" href="./dist/indexStylesheet.css" />
-    <title>matala-hizdahot</title>
+    <link rel="stylesheet" href="./dist/homeStylesheet.css" />
+    <title>HOME Page</title>
   </head>
-  <body onload="handleCheckIfUserConnected()">
-    <h1>the newest social media: Talk & Look</h1>
-    <h2>please register to enjoy our service's</h2>
-    <br /><br /><br /><br />
-    <div class="wrraper">
-      <button><a href="./register.html"> Click here to register </a></button>
-      <button><a href="./login.html"> Click here to Login </a></button>
+  <body onload="handleGetUserFromCookie()">
+    <div class="header">
+        <div class="title">
+            <h1>Talk & Look</h1>
+        </div>
+      <div class="profile">
+        <h4 class="profileName">welcome <span id="userNameByCookie"></span></h4>
+        <form onsubmit="handleLogOut(event)">
+          <button type="submit">Log Out</button>
+        </form>
+      </div>
     </div>
+
+    <div class="content"></div>
   </body>
   <script src="./dist/public/app.js"></script>
 </html>

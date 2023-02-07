@@ -9,14 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 console.log("connected");
-function handleRigestir(event) {
+function handleErrorFunction() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+        }
+        catch (error) {
+        }
+    });
+}
+function handleRegister(event) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             event.preventDefault();
             const email = event.target.elements.RegEmailId.value;
             const password = event.target.elements.RegPassId.value;
+            const repPassword = event.target.elements.RegRePassId.value;
             //@ts-ignore
-            const { data } = yield axios.post("/api/v1/users/register", { email, password });
+            const { data } = yield axios.post("/api/v1/users/register", { email, password, repPassword });
             // console.log(`welcome to our website ${email}`);
             const { ok } = data;
             if (ok)
@@ -35,8 +44,8 @@ function handleLogin(event) {
             const password = event.target.elements.LogPassId.value;
             //@ts-ignore
             const { data } = yield axios.post("/api/v1/users/login", { email, password });
-            const { ok } = data;
-            if (ok)
+            const { logging } = data;
+            if (logging)
                 window.location.href = "./update.html";
             else
                 console.log("failed to Log In !!");
@@ -46,14 +55,30 @@ function handleLogin(event) {
         }
     });
 }
-function getUserByCookie() {
+function handleCheckIfUserConnected() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             //@ts-ignore
             const { data } = yield axios.get("/api/v1/users/get-user-by-cookie");
             const { userDB } = data;
             if (userDB)
-                document.querySelector("#cookie").innerHTML = userDB.email;
+                window.location.href = "./home.html";
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleGetUserFromCookie() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            //@ts-ignore
+            const { data } = yield axios.get("/api/v1/users/get-user-by-cookie");
+            const { userDB } = data;
+            if (userDB)
+                document.querySelector("#userNameByCookie").innerHTML = `${userDB.email}`;
+            else
+                window.location.href = "./index.html";
         }
         catch (error) {
             console.error(error);
@@ -91,6 +116,23 @@ function handleDeleteUser(event) {
                 console.log(`your account ${userDB.email} was succesfully deleted`);
             else
                 throw new Error(`error at FUNCTION handleDeleteUser at FILE app.ts`);
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleLogOut(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            //@ts-ignore
+            const { data } = yield axios.get("/api/v1/users/logout");
+            const { loggedout } = data;
+            if (loggedout)
+                window.location.href = "./index.html";
+            else
+                throw new Error(`error at FUNCTION handleLogOut at FILE app.ts`);
         }
         catch (error) {
             console.error(error);

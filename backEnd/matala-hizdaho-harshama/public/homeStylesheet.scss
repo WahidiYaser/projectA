@@ -1,0 +1,55 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color: antiquewhite;
+    text-align: center;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: 1px solid black;
+    height: 80px;
+    & .profile{
+        left: calc(100% - 200px);
+        position: absolute;
+        margin-top: -15px;
+    }
+    & button{
+        background-color: rgb(82, 101, 117);
+        border-radius: 20px;
+        padding: 0px 7px 0px 7px;
+    }
+    & button:hover{
+        background-color: rgb(136, 163, 188);
+        & a{
+            color: white;
+        }
+    }
+}
+.profileName{
+    margin-top: 20px;
+    font-size: 20px;
+    color: burlywood;
+}
+#userNameByCookie{
+    color: purple;
+}
+h1{
+    color: cadetblue;
+    font-size: 60px;
+}
+.wrraper{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
