@@ -24,6 +24,9 @@ app.use(cookieParser());
 import usersRouter from "./API/users/usersRouter"
 app.use("/api/v1/users", usersRouter);
 
+import chatsRouter from "./API/chats/chatsRouter";
+app.use("/api/v1/chats",chatsRouter);
+
 app.listen(PORT, ()=>{
     console.log(`connected at port: ${PORT}`);
 });

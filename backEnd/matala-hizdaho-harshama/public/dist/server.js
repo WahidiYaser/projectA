@@ -23,6 +23,8 @@ app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
 app.use("/api/v1/users", usersRouter_1.default);
+const chatsRouter_1 = __importDefault(require("./API/chats/chatsRouter"));
+app.use("/api/v1/chats", chatsRouter_1.default);
 app.listen(PORT, () => {
     console.log(`connected at port: ${PORT}`);
 });

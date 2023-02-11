@@ -102,3 +102,57 @@ async function handleLogOut(event: any) {
         console.error(error);
     }
 }
+
+async function handleGetUserByEmail(event: any) {
+    try {
+        event.preventDefault();
+        const target = (event.target).parentElement;
+        const friendEmail = target.childNodes[0].innerText;
+        //@ts-ignore
+        const { data } = await axios.get(`/api/v1/users/get-user-by-email/${friendEmail}`);
+        const { friendDB } = data;
+        if (!friendDB) throw new Error("failed to find friendDB at handleGetUserByEmail AT app.ts");
+        else window.location.href = "./profile.html";
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function handleGetUsersList() {
+    try {
+        //@ts-ignore
+        const { data } = await axios.get("/api/v1/users/get-all-users");
+        const { usersDB, myUser } = data;
+        if (!usersDB) throw new Error("getuserlist userdb is back empty");
+        const ulList = document.querySelector("#friendsList");
+
+        usersDB.forEach((user: any) => {
+            if (user._id != myUser._id) {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                const btn = document.createElement("button");
+                btn.classList.add("navUsersBtn");
+                btn.innerHTML = "Visit Profile";
+                btn.addEventListener("click", handleGetUserByEmail);
+                a.innerHTML = user.email;
+                li.appendChild(a);
+                li.appendChild(btn);
+                ulList!.appendChild(li);
+            }
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function handleUpdateChat(event: any) {
+    try {
+        event.preventDefault();
+        const myMessage = event.target.elements.myMessage.value;
+        //@ts-ignore
+        const { data } = await axios.put("/api/v1/chats/update-chat", {myMessage});
+        console.log(data);
+    } catch (error: any) {
+        console.error(error)
+    }
+}

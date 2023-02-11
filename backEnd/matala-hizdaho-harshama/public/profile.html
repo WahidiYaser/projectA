@@ -11,14 +11,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <link rel="stylesheet" href="./dist/homeStylesheet.css" />
-    <title>HOME Page</title>
+    <link rel="stylesheet" href="./dist/profileStylesheet.css" />
+    <title>Profile Page</title>
   </head>
-  <body onload="handleGetUserFromCookie(), handleGetUsersList()">
+  <body onload="handleGetUserFromCookie()">
     <div class="parent">
-      <div class="home">
-        <a href="./home.html">go home</a>
-      </div>
+        <div class="home">
+            <a href="./home.html">go home</a>
+          </div>
       <div class="header">
         <h1>Talk & Look</h1>
       </div>
@@ -29,14 +29,22 @@
           <button type="submit">Log Out</button>
         </form>
       </div>
-
-      <div class="navigate">
-        <h4> Our Community </h4>
-        <ul id="friendsList"></ul>
+      <div class="content">
+        <div class="profileInfo">
+            <img id="profilePhoto" src="./pics/profile1.jpg" alt="PROFILE PHOTO"><br>
+            <button>Add Freiend</button>
+        </div>
+        <div class="profileChat"><br>
+            <div class="showChat">
+                <span class="meChat">adsvsdv</span>
+                <span class="friendChat">bcxvsfvsfvd</span>
+            </div>
+            <form onsubmit="handleUpdateChat(event)">
+                <input type="text" placeholder="send me message" id="myMessage">
+                <button type="submit"> SEND </button>
+            </form>
+        </div>
       </div>
-
-      <div class="content"></div>
-
     </div>
   </body>
   <script src="./dist/public/app.js"></script>

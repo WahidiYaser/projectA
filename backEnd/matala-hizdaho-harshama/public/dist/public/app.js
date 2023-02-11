@@ -139,3 +139,65 @@ function handleLogOut(event) {
         }
     });
 }
+function handleGetUserByEmail(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            const target = (event.target).parentElement;
+            const friendEmail = target.childNodes[0].innerText;
+            //@ts-ignore
+            const { data } = yield axios.get(`/api/v1/users/get-user-by-email/${friendEmail}`);
+            const { friendDB } = data;
+            if (!friendDB)
+                throw new Error("failed to find friendDB at handleGetUserByEmail AT app.ts");
+            else
+                window.location.href = "./profile.html";
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleGetUsersList() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            //@ts-ignore
+            const { data } = yield axios.get("/api/v1/users/get-all-users");
+            const { usersDB, myUser } = data;
+            if (!usersDB)
+                throw new Error("getuserlist userdb is back empty");
+            const ulList = document.querySelector("#friendsList");
+            usersDB.forEach((user) => {
+                if (user._id != myUser._id) {
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+                    const btn = document.createElement("button");
+                    btn.classList.add("navUsersBtn");
+                    btn.innerHTML = "Visit Profile";
+                    btn.addEventListener("click", handleGetUserByEmail);
+                    a.innerHTML = user.email;
+                    li.appendChild(a);
+                    li.appendChild(btn);
+                    ulList.appendChild(li);
+                }
+            });
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+function handleUpdateChat(event) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            event.preventDefault();
+            const myMessage = event.target.elements.myMessage.value;
+            //@ts-ignore
+            const { data } = yield axios.put("/api/v1/chats/update-chat", { myMessage });
+            console.log(data);
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}

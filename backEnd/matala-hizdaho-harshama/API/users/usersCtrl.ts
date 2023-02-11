@@ -10,7 +10,6 @@ export async function CheckIfUserConnected(req: express.Request, res: express.Re
         const secret = process.env.JWT_SECRET;
         const decodedUserId = jwt.decode(userID, secret!);
         const { userId } = decodedUserId;
-        console.log(userId);
 
         const userDB = await UserModel.findById(userId);
         if (!userDB) throw new Error(`no user in data base with that id ${userId}`);
@@ -30,7 +29,7 @@ export async function register(req: express.Request, res: express.Response) {
         console.log(email, password, repPassword);
 
         const { error } = UserValidation.validate({ email, password, repeatPassword: repPassword });
-        if (error) throw new Error("problem with validation");
+        if (error) throw new Error("problem with validation at register CTRL");
 
         const hash = bcrypt.hashSync(password, 10);
 
@@ -69,6 +68,15 @@ export async function login(req: express.Request, res: express.Response) {
     }
 }
 
+export async function logOut(req: express.Request, res: express.Response) {
+    try {
+        res.clearCookie("userID");
+        res.send({loggedout: true});
+    } catch (error: any) {
+        res.status(500).send({loggedout: false, error: error.message});
+    }
+}
+
 export async function updateUserPassword(req: express.Request, res: express.Response) {
     try {
         const { userID } = req.cookies;
@@ -100,11 +108,33 @@ export async function deleteUserByCookie(req: express.Request, res: express.Resp
     }
 }
 
-export async function logOut(req: express.Request, res: express.Response) {
+export async function getAllUsers(req: express.Request, res: express.Response) {
     try {
-        res.clearCookie("userID");
-        res.send({loggedout: true});
+        const {userID} = req.cookies;
+        if(!userID) throw new Error("no userID in the cookies at getAllUsers (ctrl)");
+        const secret = process.env.JWT_SECRET;
+        const decodedUserId = jwt.decode(userID, secret!);
+        const {userId} = decodedUserId;
+        const myUser = await UserModel.findById(userId);
+        const usersDB = await UserModel.find();
+        if(!usersDB || !myUser) throw new Error("myUser || usersDB is come back empty");
+        res.send({success: true, usersDB, myUser});
     } catch (error: any) {
-        res.status(500).send({loggedout: false, error: error.message});
-    }
+        res.status(500).send({success: false, error: error.message});
+    }    
+}
+
+export async function GetUserByEmail(req: express.Request, res: express.Response) {
+    try {
+        const {friendEmail} = req.params;
+        const friendDB = await UserModel.findOne({email: friendEmail});
+        if(!friendDB) throw new Error("friendDB is empty at getUserByEmail AT (ctrl)");
+        const cookie = {friendId: friendDB._id};
+        const secret = process.env.JWT_SECRET;
+        const JWTCookie = jwt.encode(cookie, secret!);
+        res.cookie("friendID", JWTCookie);
+        res.send({success: true, friendDB});
+    } catch (error: any) {
+        res.status(500).send({success: false, error: error.message});
+    }    
 }

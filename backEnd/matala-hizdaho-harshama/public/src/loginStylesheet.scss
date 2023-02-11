@@ -11,36 +11,34 @@ body {
 }
 
 body {
-    background-color: antiquewhite;
-    text-align: end;
+    background-color: rgb(226, 156, 63);
+    text-align: center;
 }
 
 h4 {
     margin-top: 20px;
-    font-size: 22px;
-    color: black;
+    font-size: 60px;
+    color: burlywood;
 }
-
+h5{
+    color: rebeccapurple;
+}
 .wrraper {
     position: relative;
-    left: calc(50% - 300px);
+    left: calc(50% - 150px);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 600px;
-    text-align: center;
-}
-
-.box {
-    border: 1px solid rgb(94, 86, 0);
+    width: 300px;
+    margin-top: 80px;
 }
 
 button {
     padding: 2px 6px;
     margin: 50px 50px;
-    background-color: rgb(192, 207, 219);
+    background-color: aliceblue;
     border-radius: 20px;
     font-size: 15px;
     color: black;
@@ -50,19 +48,6 @@ button:hover {
     background-color: rgb(43, 123, 193);
     color: white;
 }
-
-input {
+input{
     width: 250px;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-.home{
-    background-color: rgb(40, 33, 78);
-    padding: 8px;
-    &:hover{
-        background-color: rgb(96, 81, 169);
-    }
 }

@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logOut = exports.deleteUserByCookie = exports.updateUserPassword = exports.login = exports.register = exports.CheckIfUserConnected = void 0;
+exports.GetUserByEmail = exports.getAllUsers = exports.deleteUserByCookie = exports.updateUserPassword = exports.logOut = exports.login = exports.register = exports.CheckIfUserConnected = void 0;
 const usersModel_1 = __importStar(require("./usersModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt_simple_1 = __importDefault(require("jwt-simple"));
@@ -48,7 +48,6 @@ function CheckIfUserConnected(req, res) {
             const secret = process.env.JWT_SECRET;
             const decodedUserId = jwt_simple_1.default.decode(userID, secret);
             const { userId } = decodedUserId;
-            console.log(userId);
             const userDB = yield usersModel_1.default.findById(userId);
             if (!userDB)
                 throw new Error(`no user in data base with that id ${userId}`);
@@ -72,7 +71,7 @@ function register(req, res) {
             console.log(email, password, repPassword);
             const { error } = usersModel_1.UserValidation.validate({ email, password, repeatPassword: repPassword });
             if (error)
-                throw new Error("problem with validation");
+                throw new Error("problem with validation at register CTRL");
             const hash = bcrypt_1.default.hashSync(password, 10);
             const userDB = new usersModel_1.default({ email, password: hash });
             yield userDB.save();
@@ -112,6 +111,18 @@ function login(req, res) {
     });
 }
 exports.login = login;
+function logOut(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            res.clearCookie("userID");
+            res.send({ loggedout: true });
+        }
+        catch (error) {
+            res.status(500).send({ loggedout: false, error: error.message });
+        }
+    });
+}
+exports.logOut = logOut;
 function updateUserPassword(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -151,15 +162,43 @@ function deleteUserByCookie(req, res) {
     });
 }
 exports.deleteUserByCookie = deleteUserByCookie;
-function logOut(req, res) {
+function getAllUsers(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            res.clearCookie("userID");
-            res.send({ loggedout: true });
+            const { userID } = req.cookies;
+            if (!userID)
+                throw new Error("no userID in the cookies at getAllUsers (ctrl)");
+            const secret = process.env.JWT_SECRET;
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { userId } = decodedUserId;
+            const myUser = yield usersModel_1.default.findById(userId);
+            const usersDB = yield usersModel_1.default.find();
+            if (!usersDB || !myUser)
+                throw new Error("myUser || usersDB is come back empty");
+            res.send({ success: true, usersDB, myUser });
         }
         catch (error) {
-            res.status(500).send({ loggedout: false, error: error.message });
+            res.status(500).send({ success: false, error: error.message });
         }
     });
 }
-exports.logOut = logOut;
+exports.getAllUsers = getAllUsers;
+function GetUserByEmail(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { friendEmail } = req.params;
+            const friendDB = yield usersModel_1.default.findOne({ email: friendEmail });
+            if (!friendDB)
+                throw new Error("friendDB is empty at getUserByEmail AT (ctrl)");
+            const cookie = { friendId: friendDB._id };
+            const secret = process.env.JWT_SECRET;
+            const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
+            res.cookie("friendID", JWTCookie);
+            res.send({ success: true, friendDB });
+        }
+        catch (error) {
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+}
+exports.GetUserByEmail = GetUserByEmail;

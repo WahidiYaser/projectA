@@ -9,6 +9,8 @@ const router = express_1.default.Router();
 router
     .get("/get-user-by-cookie", usersCtrl_1.CheckIfUserConnected)
     .get("/logout", usersCtrl_1.logOut)
+    .get("/get-all-users", usersCtrl_1.getAllUsers)
+    .get("/get-user-by-email/:friendEmail", usersCtrl_1.GetUserByEmail)
     .post("/login", usersCtrl_1.login)
     .post("/register", usersCtrl_1.register)
     .put("/update", usersCtrl_1.updateUserPassword)

@@ -14,7 +14,17 @@ const UserSchema = new mongoose_1.default.Schema({
         unique: true,
         required: true
     },
-    password: String
+    password: String,
+    chatsID: {
+        type: (Array),
+        unique: true,
+        required: false
+    },
+    friendsID: {
+        type: (Array),
+        unique: true,
+        required: false
+    }
 });
 const UserModel = mongoose_1.default.model("users", UserSchema);
 exports.default = UserModel;

@@ -9,7 +9,17 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    password: String
+    password: String,
+    chatsID: {
+        type: Array<String>,
+        unique: true,
+        required: false
+    },
+    friendsID: {
+        type: Array<String>,
+        unique: true,
+        required: false
+    }
 });
 
 const UserModel = mongoose.model("users", UserSchema);

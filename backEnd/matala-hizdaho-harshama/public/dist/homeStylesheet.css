@@ -4,59 +4,101 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
 
 body {
-  background-color: antiquewhite;
+  background-color: rgb(0, 0, 0);
   text-align: center;
 }
 
-.header {
+.parent {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-template-areas: "home header header header header header header profile" "navigate navigate content content content content content content" "navigate navigate content content content content content content" "navigate navigate content content content content content content" "navigate navigate content content content content content content" "navigate navigate content content content content content content" "navigate navigate content content content content content content" "navigate navigate content content content content content content";
+}
+
+.parent > .home {
+  grid-area: home;
+  background-color: #8ca0ff;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  border: 1px solid black;
-  height: 80px;
+  align-items: center;
+  justify-content: center;
 }
-.header .profile {
-  left: calc(100% - 200px);
-  position: absolute;
-  margin-top: -15px;
-}
-.header button {
-  background-color: rgb(82, 101, 117);
-  border-radius: 20px;
-  padding: 0px 7px 0px 7px;
-}
-.header button:hover {
-  background-color: rgb(136, 163, 188);
-}
-.header button:hover a {
-  color: white;
+.parent > .home a {
+  color: rgb(0, 241, 254);
+  font-size: 25px;
+  text-decoration: none;
+  background-color: rgb(0, 0, 52);
+  border-radius: 50%;
+  padding: 10px;
 }
 
-.profileName {
-  margin-top: 20px;
-  font-size: 20px;
-  color: burlywood;
+.parent > .header {
+  grid-area: header;
+  background-color: #8ca0ff;
 }
-
-#userNameByCookie {
-  color: purple;
-}
-
-h1 {
-  color: cadetblue;
+.parent > .header h1 {
+  color: rgb(2, 25, 26);
   font-size: 60px;
 }
 
-.wrraper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+.parent > .profile {
+  grid-area: profile;
+  background-color: #ffa08c;
+}
+.parent > .profile button {
+  background-color: rgb(136, 163, 188);
+  border-radius: 20px;
+  padding: 0px 7px 0px 7px;
+}
+.parent > .profile button:hover,
+.parent > .profile a:hover {
+  background-color: rgb(39, 155, 250);
+  color: white;
+}
+.parent > .profile .profileName {
+  margin-top: 20px;
+  font-size: 20px;
+  color: rgb(44, 34, 20);
+}
+.parent > .profile .profileName #userNameByCookie {
+  color: purple;
+}
+
+.parent > .navigate {
+  grid-area: navigate;
+  background-color: #ffff64;
+}
+.parent > .navigate #friendsList {
+  margin-top: 50px;
+}
+.parent > .navigate #friendsList li {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: rgba(0, 136, 255, 0.3);
+}
+.parent > .navigate .navUsersBtn {
+  background-color: rgba(140, 255, 159, 0.5294117647);
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 5px;
+  border: none;
+}
+.parent > .navigate .navUsersBtn:hover {
+  background-color: rgb(56, 242, 59);
+}
+
+.parent > .content {
+  grid-area: content;
+  background-color: #8cffa0;
 }
