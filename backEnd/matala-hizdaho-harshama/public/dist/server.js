@@ -15,7 +15,7 @@ mongoose_1.default.set("strictQuery", true);
 mongoose_1.default.connect(mongo_uri).then(res => {
     console.log(`connected to DB`);
 }).catch(err => {
-    console.log("at mongoose connection:");
+    console.log("error at mongoose connection:");
     console.log(err.message);
 });
 app.use(express_1.default.static("public"));
@@ -25,6 +25,8 @@ const usersRouter_1 = __importDefault(require("./API/users/usersRouter"));
 app.use("/api/v1/users", usersRouter_1.default);
 const chatsRouter_1 = __importDefault(require("./API/chats/chatsRouter"));
 app.use("/api/v1/chats", chatsRouter_1.default);
+const postsRouter_1 = __importDefault(require("./API/posts/postsRouter"));
+app.use("/api/v1/posts", postsRouter_1.default);
 app.listen(PORT, () => {
     console.log(`connected at port: ${PORT}`);
 });

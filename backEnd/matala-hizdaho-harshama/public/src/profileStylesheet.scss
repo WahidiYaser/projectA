@@ -103,7 +103,7 @@ body {
         border-radius: 50%;
         border: 2px dashed red;
         margin-top: -100px;
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
     }
 
     & .profileInfo {
@@ -112,7 +112,7 @@ body {
             border: 3px solid black;
             border-radius: 15px;
             padding: 6px;
-            margin-bottom: 20px;
+            // margin-bottom: 20px;
         }
 
         & button:hover {
@@ -125,18 +125,23 @@ body {
         & .showChat {
             height: 200px;
             width: 600px;
-            background-color: rgba(46, 45, 45, 0.551);
+            background-color: rgb(0, 0, 0);
+            color: white;
             overflow-y: scroll;
+            padding: 10px;
+            border-radius: 10px;
             .meChat {
                 display: flex;
                 justify-content: flex-end;
-                text-shadow: 1px 1px 5px rgb(251, 255, 0);
+                color: #ffa796;
+                // text-shadow: 1px 1px 20px rgb(229, 255, 0), 0 0 1em rgb(21, 255, 0), 0 0 0.2em rgb(108, 179, 0);
             }
 
             .friendChat {
                 display: flex;
                 justify-content: flex-start;
-                text-shadow: 1px 1px 5px rgb(75, 251, 0);
+                color: #c0fc50;
+                // text-shadow: 1px 1px 20px rgb(0, 255, 247), 0 0 1em rgb(0, 78, 248), 0 0 0.2em blue;
             }
         }
     }

@@ -12,18 +12,17 @@ const UserSchema = new mongoose_1.default.Schema({
     email: {
         type: String,
         unique: true,
-        required: true
+        require: true
     },
     password: String,
+    imageSrc: {
+        type: String
+    },
     chatsID: {
-        type: (Array),
-        unique: true,
-        required: false
+        type: String
     },
     friendsID: {
-        type: (Array),
-        unique: true,
-        required: false
+        type: String
     }
 });
 const UserModel = mongoose_1.default.model("users", UserSchema);

@@ -13,7 +13,7 @@ mongoose.set("strictQuery", true);
 mongoose.connect(mongo_uri!).then(res=>{
     console.log(`connected to DB`);
 }).catch(err=>{
-    console.log("at mongoose connection:");
+    console.log("error at mongoose connection:");
     console.log(err.message);
 });
 
@@ -26,6 +26,9 @@ app.use("/api/v1/users", usersRouter);
 
 import chatsRouter from "./API/chats/chatsRouter";
 app.use("/api/v1/chats",chatsRouter);
+
+import postsRouter from "./API/posts/postsRouter";
+app.use("/api/v1/posts", postsRouter);
 
 app.listen(PORT, ()=>{
     console.log(`connected at port: ${PORT}`);

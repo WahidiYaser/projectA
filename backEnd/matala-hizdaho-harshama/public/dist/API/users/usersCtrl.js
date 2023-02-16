@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetUserByEmail = exports.getAllUsers = exports.deleteUserByCookie = exports.updateUserPassword = exports.logOut = exports.login = exports.register = exports.CheckIfUserConnected = void 0;
+exports.search = exports.GetFriendInfo = exports.CheckIfAreFriends = exports.RemoveFriend = exports.AddFriend = exports.DeleteFriendFromCookie = exports.GetUserByEmail = exports.getAllUsers = exports.deleteUserByCookie = exports.updateImageSrc = exports.updateUserPassword = exports.logOut = exports.login = exports.register = exports.CheckIfUserConnected = void 0;
 const usersModel_1 = __importStar(require("./usersModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt_simple_1 = __importDefault(require("jwt-simple"));
@@ -43,15 +43,18 @@ function CheckIfUserConnected(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { userID } = req.cookies;
-            if (!userID)
-                throw new Error("no user found in cookies");
-            const secret = process.env.JWT_SECRET;
-            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
-            const { userId } = decodedUserId;
-            const userDB = yield usersModel_1.default.findById(userId);
-            if (!userDB)
-                throw new Error(`no user in data base with that id ${userId}`);
-            res.send({ success: true, userDB });
+            if (!userID) {
+                res.send({ success: true, msg: "no user in cookies" });
+            }
+            else {
+                const secret = process.env.JWT_SECRET;
+                const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+                const { userId } = decodedUserId;
+                const userDB = yield usersModel_1.default.findById(userId);
+                if (!userDB)
+                    throw new Error(`no user in data base with that id ${userId}`);
+                res.send({ success: true, userDB });
+            }
         }
         catch (error) {
             res.status(500).send({ success: false, error: error.message });
@@ -62,18 +65,17 @@ exports.CheckIfUserConnected = CheckIfUserConnected;
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { email, password, repPassword } = req.body;
+            const { email, password, repPassword, imageSrc } = req.body;
             if (!email || !password || !repPassword)
                 throw new Error("couldn't get all fields from client");
             // const userDB = UserModel.create({email, password});    this another way to create new data/user
             // const salt = bcrypt.genSaltSync(saltRounds);
             // const hash = bcrypt.hashSync(password, salt);
-            console.log(email, password, repPassword);
             const { error } = usersModel_1.UserValidation.validate({ email, password, repeatPassword: repPassword });
             if (error)
                 throw new Error("problem with validation at register CTRL");
             const hash = bcrypt_1.default.hashSync(password, 10);
-            const userDB = new usersModel_1.default({ email, password: hash });
+            const userDB = new usersModel_1.default({ email, password: hash, imageSrc });
             yield userDB.save();
             if (!userDB)
                 throw new Error("no user was created");
@@ -81,10 +83,10 @@ function register(req, res) {
             const secret = process.env.JWT_SECRET;
             const JWTCookie = jwt_simple_1.default.encode(cookie, secret);
             res.cookie("userID", JWTCookie);
-            res.send({ ok: true, msg: "new user was created" });
+            res.send({ registered: true, msg: "new user was created" });
         }
         catch (error) {
-            res.status(500).send({ success: false, error: error.message });
+            res.status(500).send({ registered: false, error: error.message });
         }
     });
 }
@@ -144,6 +146,26 @@ function updateUserPassword(req, res) {
     });
 }
 exports.updateUserPassword = updateUserPassword;
+function updateImageSrc(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { userID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { userId } = decodedUserId;
+            console.log(req.body);
+            const { imageSrc } = req.body;
+            const userDB = yield usersModel_1.default.findByIdAndUpdate(userId, imageSrc);
+            if (!userDB)
+                throw new Error(`usersCTRL, updateImageSrc, (if!userDB)`);
+            res.send({ ok: true, userDB });
+        }
+        catch (error) {
+            res.status(500).send({ ok: false, error: error.message });
+        }
+    });
+}
+exports.updateImageSrc = updateImageSrc;
 function deleteUserByCookie(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -202,3 +224,129 @@ function GetUserByEmail(req, res) {
     });
 }
 exports.GetUserByEmail = GetUserByEmail;
+// export async function GetUserById(req: express.Request, res: express.Response) {
+//     try {
+//         const { userId } = req.params;
+//         const userDB = await UserModel.findById(userId);
+//         if (!userDB) throw new Error("userDB return undefiend in getUserById AT (usersCtrl)");
+//         res.send({ userFound: true, userDB });
+//     } catch (error: any) {
+//         res.status(500).send({ userFound: false, error: error.message });
+//     }
+// }
+function DeleteFriendFromCookie(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            res.clearCookie("friendID");
+            res.send({ deleted: true });
+        }
+        catch (error) {
+            res.status(500).send({ deleted: false, error: error.message });
+        }
+    });
+}
+exports.DeleteFriendFromCookie = DeleteFriendFromCookie;
+function AddFriend(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { friendID, userID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedFriendId = jwt_simple_1.default.decode(friendID, secret);
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { friendId } = decodedFriendId;
+            const { userId } = decodedUserId;
+            let areFriends = "u Allready friends dude";
+            const friendDB = yield usersModel_1.default.findOne({ friendsID: friendId });
+            if (!friendDB) {
+                yield usersModel_1.default.findByIdAndUpdate(userId, { $push: { friendsID: friendId } });
+                yield usersModel_1.default.findByIdAndUpdate(friendId, { $push: { friendsID: userId } });
+                areFriends = "u become friends now :)";
+            }
+            res.send({ success: true, areFriends });
+        }
+        catch (error) {
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+}
+exports.AddFriend = AddFriend;
+function RemoveFriend(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { friendID, userID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedFriendId = jwt_simple_1.default.decode(friendID, secret);
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { friendId } = decodedFriendId;
+            const { userId } = decodedUserId;
+            const friendDB = yield usersModel_1.default.findOne({ friendsID: friendId });
+            if (friendDB) {
+                yield usersModel_1.default.updateOne({ _id: userId }, { $pull: { friendsID: friendId } });
+                yield usersModel_1.default.updateOne({ _id: friendId }, { $pull: { friendsID: userId } });
+            }
+            res.send({ success: true, msg: "user deleted succesfully" });
+        }
+        catch (error) {
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+}
+exports.RemoveFriend = RemoveFriend;
+function CheckIfAreFriends(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { friendID, userID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedFriendId = jwt_simple_1.default.decode(friendID, secret);
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { friendId } = decodedFriendId;
+            const { userId } = decodedUserId;
+            let areFriends = false;
+            const userDB = yield usersModel_1.default.findOne({ _id: userId, friendsID: friendId });
+            if (!userDB)
+                areFriends = false;
+            else
+                areFriends = true;
+            res.send({ success: true, areFriends });
+        }
+        catch (error) {
+            res.status(500).send({ success: false, error: error.message });
+        }
+    });
+}
+exports.CheckIfAreFriends = CheckIfAreFriends;
+function GetFriendInfo(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { friendID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedFriendId = jwt_simple_1.default.decode(friendID, secret);
+            const { friendId } = decodedFriendId;
+            const friendDB = yield usersModel_1.default.findOne({ _id: friendId });
+            // const imageSrc = friendDB?.imageSrc;
+            res.send({ friendInfoFound: true, friendDB });
+        }
+        catch (error) {
+            res.status(500).send({ friendInfoFound: false, error: error.message });
+        }
+    });
+}
+exports.GetFriendInfo = GetFriendInfo;
+function search(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { userID } = req.cookies;
+            const secret = process.env.JWT_SECRET;
+            const decodedUserId = jwt_simple_1.default.decode(userID, secret);
+            const { userId } = decodedUserId;
+            const { inputFromUser } = req.body;
+            const pattern = new RegExp(`^${inputFromUser}`);
+            const friendsDB = yield usersModel_1.default.find({ email: { $regex: pattern } });
+            res.send({ friendFound: true, friendsDB, userId });
+        }
+        catch (error) {
+            res.status(500).send({ friendFound: false, error: error.message });
+        }
+    });
+}
+exports.search = search;

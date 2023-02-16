@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="./dist/homeStylesheet.css" />
     <title>HOME Page</title>
   </head>
-  <body onload="handleGetUserFromCookie(), handleGetUsersList()">
+
+  <body
+    onload="handleGetUserFromCookie(), handleGetUsersList(), handleDeleteFriendFromCookie(), handleGetAllPosts()"
+  >
     <div class="parent">
       <div class="home">
         <a href="./home.html">go home</a>
@@ -28,16 +31,37 @@
         <form onsubmit="handleLogOut(event)">
           <button type="submit">Log Out</button>
         </form>
+        <form onsubmit="handleGoToUpdateHtml(event)">
+          <button type="submit">Update Profile</button>
+        </form>
       </div>
 
       <div class="navigate">
-        <h4> Our Community </h4>
+        <h2>Our Community</h2>
+        <hr>
+        <h5>search a friend</h5>
+        <input type="search" id="userInput" oninput="handleFindFriend(event)">
+        <ul id="searchList"></ul>
+        <hr>
         <ul id="friendsList"></ul>
       </div>
 
-      <div class="content"></div>
-
+      <div class="content">
+        <div class="toolsBar">
+          <form onsubmit="handleAddPost(event)">
+          <input type="text" id="imgToPost" placeholder="insert a picture url to post"/>
+          <input type="text" id="textToPost" placeholder="what u wanna say today ?"/>
+          <button type="submit">Share</button>
+        </form>
+          <form onsubmit="handleDeleteAllPosts(event)">
+          <button type="submit">delete all posts</button>
+        </form>
+      </div>
+          <div class="posts">
+          </div>
+      </div>
     </div>
   </body>
+  <script> var exports = {}; </script> <!-- hack for solve the error of: "app.js:11 Uncaught ReferenceError: exports is not defined at app.js:11:23" -->
   <script src="./dist/public/app.js"></script>
 </html>

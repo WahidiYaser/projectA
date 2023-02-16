@@ -91,14 +91,12 @@ body {
   border-radius: 50%;
   border: 2px dashed red;
   margin-top: -100px;
-  margin-bottom: 20px;
 }
 .parent > .content .profileInfo button {
   background-color: rgb(255, 255, 255);
   border: 3px solid black;
   border-radius: 15px;
   padding: 6px;
-  margin-bottom: 20px;
 }
 .parent > .content .profileInfo button:hover {
   background-color: rgb(225, 255, 0);
@@ -107,16 +105,19 @@ body {
 .parent > .content .profileChat .showChat {
   height: 200px;
   width: 600px;
-  background-color: rgba(46, 45, 45, 0.551);
+  background-color: rgb(0, 0, 0);
+  color: white;
   overflow-y: scroll;
+  padding: 10px;
+  border-radius: 10px;
 }
 .parent > .content .profileChat .showChat .meChat {
   display: flex;
   justify-content: flex-end;
-  text-shadow: 1px 1px 5px rgb(251, 255, 0);
+  color: #ffa796;
 }
 .parent > .content .profileChat .showChat .friendChat {
   display: flex;
   justify-content: flex-start;
-  text-shadow: 1px 1px 5px rgb(75, 251, 0);
+  color: #c0fc50;
 }

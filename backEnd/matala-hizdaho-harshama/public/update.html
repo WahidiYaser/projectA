@@ -14,29 +14,37 @@
     <link rel="stylesheet" href="./dist/updateStylesheet.css" />
     <title>Update your profile</title>
   </head>
-  <body>
+  <body onload="handleDeleteFriendFromCookie()">
     <button class="home"><a href="./index.html">go Home</a></button>
     <div class="wrraper">
-      <div class="box">
+      <hr>
         <h4>change your password</h4>
         <form onsubmit="handleUpdatePassword(event)">
           <input type="password" id="UpPassId" placeholder="password" />
           <button type="submit">click here to change password</button>
         </form>
-      </div>
-      <div class="box">
+
+        <hr>
+        <h4>update your picture</h4>
+        <form onsubmit="handleUpdateImageSrc(event)">
+          <input type="text" id="imageSrc" placeholder="picture source" />
+          <button type="submit">click here to update your picture</button>
+        </form>
+
+      <hr>
         <h4>Logout</h4>
         <form onsubmit="handleLogOut(event)">
           <button type="submit">click here to Log Out</button>
         </form>
-      </div>
-      <div class="box">
+
+      <hr>
         <h4>delete account</h4>
         <form onsubmit="handleDeleteUser(event)">
           <button type="submit">click here to delete account</button>
         </form>
-      </div>
+
     </div>
   </body>
+  <script> var exports = {}; </script> <!-- hack for solve the error of: "app.js:11 Uncaught ReferenceError: exports is not defined at app.js:11:23" -->
   <script src="./dist/public/app.js"></script>
 </html>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./dist/indexStylesheet.css" />
     <title>matala-hizdahot</title>
   </head>
-  <body onload="handleCheckIfUserConnected()">
+  <body onload="handleCheckIfUserConnected(), handleDeleteFriendFromCookie()">
     <h1>the newest social media: Talk & Look</h1>
     <h2>please register to enjoy our service's</h2>
     <br /><br /><br /><br />
@@ -23,5 +23,6 @@
       <button><a href="./login.html"> Click here to Login </a></button>
     </div>
   </body>
+  <script> var exports = {}; </script> <!-- hack for solve the error of: "app.js:11 Uncaught ReferenceError: exports is not defined at app.js:11:23" -->
   <script src="./dist/public/app.js"></script>
 </html>

@@ -15,3 +15,4 @@ joi-password
 cookie-parser @types/cookie-parser
 jwt-simple @types/jwt-simple
 
+npm install moment --save

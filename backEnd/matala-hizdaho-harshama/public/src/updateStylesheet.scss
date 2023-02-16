@@ -20,7 +20,9 @@ h4 {
     font-size: 22px;
     color: black;
 }
-
+hr{
+    width: 100%;
+}
 .wrraper {
     position: relative;
     left: calc(50% - 300px);
@@ -33,13 +35,9 @@ h4 {
     text-align: center;
 }
 
-.box {
-    border: 1px solid rgb(94, 86, 0);
-}
-
 button {
     padding: 2px 6px;
-    margin: 50px 50px;
+    margin: 20px 10px;
     background-color: rgb(192, 207, 219);
     border-radius: 20px;
     font-size: 15px;
