@@ -40,6 +40,15 @@ function HOME() {
     }
   }
 
+  // async function handleGetBreedImg(breed: any) {
+  //   try {
+  //     const { data } = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random/1`);
+  //     return(data.message);
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+
   function handleSearchBreed(event: any) {
     let search = event.target.value;
     event.preventDefault();
@@ -57,8 +66,7 @@ function HOME() {
 
   useEffect(() => {
     handleGetBreeds();
-  }, [breedsArray, renderedBreedsArray, breedsImgArray]);
-
+  }, [breedsArray, breedsImgArray, renderedBreedsArray]);
 
   if (renderedBreedsArray[0] == "") {
     return (
@@ -71,7 +79,11 @@ function HOME() {
         <div className='DogContainer'>
           {
             breedsArray.map((dog: any, index) => {
-              return (<div className='DogCard' key={index}><DogCard title={dog} src={breedsImgArray[index] ? breedsImgArray[index].src[0] : null} /></div>)
+              return (
+                <div className='DogCard' key={index}>
+                  <DogCard title={dog} src={breedsImgArray[index] ? breedsImgArray[index].src[0] : null} />
+                </div>
+              )
             })
           };
         </div>
@@ -85,7 +97,7 @@ function HOME() {
           <h2> welcome to home ^_^  </h2><br />
           <input type="text" id='search' onChange={handleSearchBreed} />
         </div><br />
-        <button onClick={handleGetBreedsImgs}> get dogs imgs </button>
+        {/* <button onClick={handleGetBreedsImgs}> get dogs imgs </button> */}
         {
           renderedBreedsArray.map((dog: any, index) => {
             return (<DogCard title={dog} src={""} key={index} />)
