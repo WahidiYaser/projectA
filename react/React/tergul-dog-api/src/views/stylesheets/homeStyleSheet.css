@@ -13,3 +13,21 @@ img {
   height: 50vh;
   width: 50vh;
 }
+
+.HOME {
+  width: 100%;
+}
+
+.DogContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.DogCard {
+  border: solid black 4px;
+  width: 60vh;
+  margin-bottom: 10px;
+}

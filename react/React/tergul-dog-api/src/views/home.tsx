@@ -3,7 +3,6 @@ import axios from 'axios';
 import DogCard from '../components/DogCard';
 import { DogContext } from '../contexts/DogContexts';
 import './stylesheets/homeStyleSheet.css';
-import { render } from '@testing-library/react';
 
 function HOME() {
 
@@ -63,18 +62,20 @@ function HOME() {
 
   if (renderedBreedsArray[0] == "") {
     return (
-      <>
+      <div className='HOME'>
         <div>
           <h2> welcome to home ^_^  </h2><br />
           <input type="text" id='search' onChange={handleSearchBreed} />
         </div><br />
         <button onClick={handleGetBreedsImgs}> get dogs imgs </button>
-        {
-          breedsArray.map((dog: any, index) => {
-            return (<DogCard title={dog} src={breedsImgArray[index] ? breedsImgArray[index].src[0] : null} key={index} />)
-          })
-        };
-      </>
+        <div className='DogContainer'>
+          {
+            breedsArray.map((dog: any, index) => {
+              return (<div className='DogCard' key={index}><DogCard title={dog} src={breedsImgArray[index] ? breedsImgArray[index].src[0] : null} /></div>)
+            })
+          };
+        </div>
+      </div>
     );
   }
   else {
