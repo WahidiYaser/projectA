@@ -33,7 +33,6 @@ function HOME() {
         breedsArray.map(async (breed: any, index) => {
           const { data } = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random/1`);
           breedsImgs[index] = { breed: breed, src: data.message };
-          // console.log(breedsImgs[index].src)
         })
         setBreedsImgsArray(breedsImgs);
       }
@@ -43,17 +42,24 @@ function HOME() {
   }
 
   function handleSearchBreed(event: any) {
+    let search = event.target.value;
     event.preventDefault();
-    const pattern = new RegExp(`^${event.target.value}`);
-    const newArr = breedsArray.filter((breed: any) => {
-      return (breed.match(pattern));
-    });
-    setRenderedBreedsArray(newArr);
+    if (!search) {
+      setRenderedBreedsArray([""]);
+    }
+    else {
+      const pattern = new RegExp(`^${search}`);
+      const newArr = breedsArray.filter((breed: any) => {
+        return (breed.match(pattern));
+      });
+      setRenderedBreedsArray(newArr);
+    }
   }
 
   useEffect(() => {
     handleGetBreeds();
-  }, [breedsArray, renderedBreedsArray]);
+  }, [breedsArray, renderedBreedsArray, breedsImgArray]);
+
 
   if (renderedBreedsArray[0] == "") {
     return (
@@ -71,7 +77,7 @@ function HOME() {
       </>
     );
   }
-  else{
+  else {
     return (
       <>
         <div>
