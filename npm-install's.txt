@@ -16,3 +16,8 @@ cookie-parser @types/cookie-parser
 jwt-simple @types/jwt-simple
 
 npm install moment --save
+
+npx create-react-app example1 --template typescript
+npm i react-router-dom @types/react-router-dom
+
+
