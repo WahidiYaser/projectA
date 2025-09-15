@@ -20,6 +20,7 @@ function HOME() {
       const { data } = await axios.get("https://dog.ceo/api/breeds/list/all");
       const breeds: string[] = Object.keys(data.message)
       setBreedsArray(breeds);
+      
     } catch (error) {
       console.error(error)
     }
